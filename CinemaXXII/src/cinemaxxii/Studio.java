@@ -9,7 +9,9 @@ package cinemaxxii;
  * @author Yoga
  */
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // Kelas yang mewakili studio di teater
 public class Studio extends EntertainmentEntity implements Displayable {
@@ -17,12 +19,16 @@ public class Studio extends EntertainmentEntity implements Displayable {
     private List<Boolean> seatStatus;
     private List<Movie> movies;
 
+    // Map untuk menyimpan informasi reservasi (nomor kursi dan User)
+    private Map<Integer, User> reservations;
+
     // Konstruktor untuk membuat objek Studio dengan nama dan jumlah kursi tertentu
     public Studio(String name, int seatCount) {
         super(name); // Memanggil konstruktor kelas induk untuk menetapkan nama studio
         this.seatCount = seatCount;
         this.seatStatus = new ArrayList<>(seatCount);
         this.movies = new ArrayList<>();
+        this.reservations = new HashMap<>();
         initializeSeatStatus(); // Metode untuk menginisialisasi status kursi
     }
 
@@ -69,9 +75,32 @@ public class Studio extends EntertainmentEntity implements Displayable {
         }
     }
 
+    // Metode untuk mereservasi kursi di studio dengan informasi pengguna
+    public void reserveSeat(int seatNumber, User user) {
+        if (isValidSeatNumber(seatNumber)) {
+            seatStatus.set(seatNumber - 1, true);
+            reservations.put(seatNumber, user);
+        } else {
+            System.out.println("Invalid seat number.");
+        }
+    }
+
     // Metode private untuk memeriksa apakah nomor kursi valid
     private boolean isValidSeatNumber(int seatNumber) {
         return seatNumber > 0 && seatNumber <= seatCount;
+    }
+
+    // Metode untuk mendapatkan informasi reservasi berdasarkan nomor kursi
+    public void getReservationInfo(int seatNumber) {
+        User user = reservations.get(seatNumber);
+        if (user != null) {
+            System.out.println("======[Reservation Info]======");
+            System.out.println("Reservation Info for Seat " + seatNumber + ":");
+            System.out.println("User Name: " + user.getName());
+            System.out.println("User Email: " + user.getEmail());
+        } else {
+            System.out.println("No reservation found for Seat " + seatNumber);
+        }
     }
 
     // Getter and setter for encapsulation
@@ -86,4 +115,5 @@ public class Studio extends EntertainmentEntity implements Displayable {
     public List<Movie> getMovies() {
         return movies;
     }
+    
 }
