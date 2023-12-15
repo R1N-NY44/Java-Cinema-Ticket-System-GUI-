@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.ResultSet;
+import javax.swing.UIManager;
 
 public class CinemaXXII {
     private Connection conn;
@@ -25,14 +26,24 @@ public class CinemaXXII {
      * @param args the command line arguments
      */
     public static void main(String[] args) {    
+        try { //Design
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel"); 
+        } catch (Exception ex) { 
+            ex.printStackTrace(); 
+        }
+        
         DisplayFrame display = new DisplayFrame();
         display.setVisible(true);
+        
+//        inputData displayInput = new inputData();
+//        displayInput.setVisible(true);
+        
         CinemaXXII cinema = new CinemaXXII();
         cinema.displayMovies();
     }
     
     public void displayMovies() {
-        try (Connection conn = k.getKoneksi();
+        try (Connection conn = k.getConnection();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM film WHERE `Show Date` >= CURRENT_DATE;");
             ResultSet rs = ps.executeQuery()) {
 
@@ -53,11 +64,10 @@ public class CinemaXXII {
             }
 
             // Sekarang, 'movies' adalah ArrayList yang berisi objek Movie dari database.
-            // 
 
             // Misalnya, mencetak detail film ke konsol:
             for (Movie movie : movies) {
-                System.out.println(movie.getTitle());
+                System.out.println(movie);
                 
             }
 

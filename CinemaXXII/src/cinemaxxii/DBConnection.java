@@ -17,7 +17,7 @@ public class DBConnection {
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "";
 
-    public static Connection getKoneksi() {
+    public static Connection getConnection() {
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setUrl(DB_URL);
         dataSource.setUser(DB_USERNAME);
@@ -26,14 +26,14 @@ public class DBConnection {
         Connection connection = null;
         try {
             connection = dataSource.getConnection();
-            System.out.println("Koneksi berhasil");
+            System.out.println("Connected");
         } catch (SQLException ex) {
             System.out.println("Eksepsi akses data: " + ex.getMessage());
         }
         return connection;
     }
 
-    public static void main(String[] args) {
-        Connection conn = getKoneksi();
-    }
+//    public static void main(String[] args) {
+//        Connection conn = getKoneksi();
+//    }
 }

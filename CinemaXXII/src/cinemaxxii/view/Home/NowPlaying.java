@@ -7,6 +7,8 @@ package cinemaxxii.view.Home;
 import cinemaxxii.display.DisplayFrame;
 import cinemaxxii.view.MovieDetail.MovieDetails;
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -14,13 +16,28 @@ import javax.swing.JPanel;
  */
 public class NowPlaying extends javax.swing.JPanel {
 
-    private final DisplayFrame displayFrame;
+    
     /**
      * Creates new form HomePage
      */
+    private final DisplayFrame displayFrame;
     public NowPlaying(DisplayFrame displayFrame) {
         initComponents();
         this.displayFrame = displayFrame;
+        
+        try {
+//            JLabel jLabel1 = new JLabel();
+//            ImageIcon imageIcon = new ImageIcon(getClass().getResource("/Asset/Kuro Neko.png"));
+//            jLabel1.setIcon(imageIcon);
+//            jLabel1.setSize(600, 200);  // Ukuran yang diinginkan
+//            add(jLabel1);
+
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/Kuro Neko.png")));
+        } catch (Exception e) {
+            e.printStackTrace();
+}
+
+        
     }
 
     /**
@@ -32,10 +49,26 @@ public class NowPlaying extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(153, 255, 255));
+        setBackground(new java.awt.Color(43, 43, 43));
+        setToolTipText("");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 0, 0), 10, true));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel1.setName(""); // NOI18N
+
+        jButton1.setBackground(new java.awt.Color(102, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("MovieA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -43,22 +76,48 @@ public class NowPlaying extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(378, 378, 378)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jButton1)
-                .addContainerGap(945, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(1296, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jButton1)
-                .addContainerGap(572, Short.MAX_VALUE))
+                .addGap(78, 78, 78)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(392, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -70,5 +129,7 @@ public class NowPlaying extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

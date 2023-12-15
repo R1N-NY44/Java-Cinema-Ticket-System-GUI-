@@ -20,8 +20,7 @@ public class MovieDetails extends javax.swing.JPanel {
      */
     public MovieDetails(DisplayFrame displayFrame) {
         initComponents();
-        this.displayFrame = displayFrame;
-        
+        this.displayFrame = displayFrame;    
     }
 
     /**
@@ -33,15 +32,14 @@ public class MovieDetails extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jFileChooser1 = new javax.swing.JFileChooser();
+        backButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 255, 204));
 
-        jButton1.setText("◀️ ️Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setText("◀️ ️Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
@@ -50,35 +48,27 @@ public class MovieDetails extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addComponent(backButton)
+                .addContainerGap(1081, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jButton1)
-                .addGap(40, 40, 40)
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(237, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(backButton)
+                .addContainerGap(612, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         JPanel homePanel = new HomeDisplay(displayFrame);  // Gantilah dengan panel yang baru
         displayFrame.changeDisplayPanel(homePanel);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_backButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JButton backButton;
     // End of variables declaration//GEN-END:variables
 }

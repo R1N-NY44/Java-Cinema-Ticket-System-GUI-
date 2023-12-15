@@ -37,21 +37,37 @@ public class HomeDisplay extends javax.swing.JPanel {
 
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         DisplayFrame = new javax.swing.JPanel();
 
-        jButton2.setText("📆 Coming Soon");
+        setBackground(new java.awt.Color(43, 43, 43));
+
+        jButton2.setBackground(new java.awt.Color(176, 147, 106));
+        jButton2.setFont(new java.awt.Font("Castellar", 0, 56)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Coming Soon");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton1.setText("🎬 Now Playing");
+        jButton1.setBackground(new java.awt.Color(176, 147, 106));
+        jButton1.setFont(new java.awt.Font("Castellar", 0, 56)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Now Playing");
+        jButton1.setAlignmentY(0.0F);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jSeparator1.setBackground(new java.awt.Color(107, 92, 71));
+        jSeparator1.setForeground(new java.awt.Color(107, 92, 71));
+        jSeparator1.setAlignmentX(0.0F);
+        jSeparator1.setAlignmentY(0.0F);
+        jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(107, 92, 71), 2));
 
         DisplayFrame.setBackground(new java.awt.Color(204, 204, 204));
         DisplayFrame.setLayout(new java.awt.BorderLayout());
@@ -60,23 +76,23 @@ public class HomeDisplay extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(DisplayFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DisplayFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)))
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(DisplayFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(DisplayFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
@@ -106,5 +122,6 @@ public class HomeDisplay extends javax.swing.JPanel {
     private javax.swing.JPanel DisplayFrame;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
