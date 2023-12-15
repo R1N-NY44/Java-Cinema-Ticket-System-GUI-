@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package cinemaxxii.view.Home;
+package cinemaxxii.view.MovieDetail;
 
 /**
  *
  * @author Yoga
  */
-public class ComingSoon extends javax.swing.JPanel {
+public class StudioA extends javax.swing.JPanel {
 
     /**
-     * Creates new form ComingSoon
+     * Creates new form StudioA
      */
-    public ComingSoon() {
+    public StudioA() {
         initComponents();
     }
 
@@ -26,18 +26,15 @@ public class ComingSoon extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(153, 255, 204));
-        setPreferredSize(new java.awt.Dimension(384, 0));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

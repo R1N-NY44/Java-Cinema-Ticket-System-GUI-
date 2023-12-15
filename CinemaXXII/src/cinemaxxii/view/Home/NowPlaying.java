@@ -34,7 +34,7 @@ public class NowPlaying extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 51));
+        setBackground(new java.awt.Color(153, 255, 255));
 
         jButton1.setText("MovieA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -48,16 +48,16 @@ public class NowPlaying extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(78, 78, 78)
                 .addComponent(jButton1)
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addContainerGap(945, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(55, 55, 55)
                 .addComponent(jButton1)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addContainerGap(572, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
