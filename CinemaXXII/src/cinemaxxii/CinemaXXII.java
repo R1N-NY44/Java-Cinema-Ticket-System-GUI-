@@ -67,8 +67,7 @@ public class CinemaXXII {
 
             // Misalnya, mencetak detail film ke konsol:
             for (Movie movie : movies) {
-                System.out.println(movie);
-                
+                System.out.println(movie.getTitle());   
             }
 
         } catch (SQLException e) {
