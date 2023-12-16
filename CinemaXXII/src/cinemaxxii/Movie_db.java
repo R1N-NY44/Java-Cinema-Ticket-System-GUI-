@@ -31,13 +31,14 @@ public class Movie_db {
                 int movieId = rs.getInt("MovieId");
                 String title = rs.getString("Title");
                 String cover = rs.getString("Cover");
+                String banner = rs.getString("Banner");
                 String synopsis = rs.getString("Synopsis");
                 String genre = rs.getString("Genre");
                 String duration = rs.getString("Duration");
                 String showDate = rs.getString("Show Date");
                 String theater = rs.getString("Theater");
     
-                Movie movie = new Movie(movieId, title, cover, synopsis, genre, duration, showDate, theater);
+                Movie movie = new Movie(movieId, title, cover, banner, synopsis, genre, duration, showDate, theater);
                 movies.add(movie);
             }
             

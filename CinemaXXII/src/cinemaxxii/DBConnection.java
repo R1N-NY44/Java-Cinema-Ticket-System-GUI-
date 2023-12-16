@@ -26,7 +26,7 @@ public class DBConnection {
         Connection connection = null;
         try {
             connection = dataSource.getConnection();
-            System.out.println("Connected");
+            System.out.println("Use DB");
         } catch (SQLException ex) {
             System.out.println("Eksepsi akses data: " + ex.getMessage());
         }

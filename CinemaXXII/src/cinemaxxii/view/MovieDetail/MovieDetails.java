@@ -4,9 +4,16 @@
  */
 package cinemaxxii.view.MovieDetail;
 
+import cinemaxxii.DBConnection;
+import cinemaxxii.Movie;
+import java.sql.PreparedStatement;
 import cinemaxxii.display.DisplayFrame;
 import cinemaxxii.view.Home.HomeDisplay;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import java.sql.ResultSet;
 
 /**
  *
@@ -15,14 +22,58 @@ import javax.swing.JPanel;
 public class MovieDetails extends javax.swing.JPanel {
 
     private final DisplayFrame displayFrame;
+    private final DBConnection k = new DBConnection();
+    
     /**
      * Creates new form MovieDetails
      */
-    public MovieDetails(DisplayFrame displayFrame, int movId) {
+    public MovieDetails(DisplayFrame displayFrame, int getId) {
         initComponents();
         this.displayFrame = displayFrame;
-        System.out.println(movId);
+        
+        displayMovies(getId);
     }
+    
+public void displayMovies(int movieId) {
+    try (Connection conn = k.getConnection();
+         PreparedStatement ps = conn.prepareStatement("SELECT * FROM film WHERE `MovieId` = ?;")) {
+
+        ps.setInt(1, movieId);
+
+        try (ResultSet rs = ps.executeQuery()) {
+            ArrayList<Movie> movies = new ArrayList<>();
+
+            while (rs.next()) {
+                int id = rs.getInt("MovieId");
+                String title = rs.getString("Title");
+                String cover = rs.getString("Cover");
+                String banner = rs.getString("Banner");
+                String synopsis = rs.getString("Synopsis");
+                String genre = rs.getString("Genre");
+                String duration = rs.getString("Duration");
+                String showDate = rs.getString("Show Date");
+                String theater = rs.getString("Theater");
+
+                Movie movie = new Movie(id, title, cover, banner, synopsis, genre, duration, showDate, theater);
+                movies.add(movie);
+            }
+            
+            for (Movie movie : movies) {
+                try {
+                    IMG_Banner.setIcon(new javax.swing.ImageIcon(new java.net.URL(movie.getBanner())));
+                    MovieTitle.setText(movie.getTitle());
+                } catch (java.net.MalformedURLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,33 +84,152 @@ public class MovieDetails extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Header = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        HeaderTitle = new javax.swing.JPanel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        IMG_Banner = new javax.swing.JLabel();
+        MovieTitle = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(43, 43, 43));
+        setMinimumSize(new java.awt.Dimension(0, 3));
         setPreferredSize(new java.awt.Dimension(1920, 1080));
 
-        backButton.setText("◀️ ️Back");
+        Header.setBackground(new java.awt.Color(33, 33, 33));
+
+        backButton.setBackground(new java.awt.Color(107, 92, 71));
+        backButton.setFont(new java.awt.Font("Castellar", 0, 36)); // NOI18N
+        backButton.setForeground(new java.awt.Color(204, 204, 204));
+        backButton.setText("Back");
+        backButton.setActionCommand("[️Back");
+        backButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        backButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
 
+        jSeparator1.setBackground(new java.awt.Color(107, 92, 71));
+        jSeparator1.setForeground(new java.awt.Color(107, 92, 71));
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(107, 92, 71), 2));
+
+        jLabel2.setFont(new java.awt.Font("Castellar", 0, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Cinema X.X.X");
+
+        javax.swing.GroupLayout HeaderLayout = new javax.swing.GroupLayout(Header);
+        Header.setLayout(HeaderLayout);
+        HeaderLayout.setHorizontalGroup(
+            HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HeaderLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(backButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 580, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(767, 767, 767))
+            .addComponent(jSeparator1)
+        );
+        HeaderLayout.setVerticalGroup(
+            HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HeaderLayout.createSequentialGroup()
+                .addGroup(HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HeaderLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderLayout.createSequentialGroup()
+                        .addContainerGap(14, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        HeaderTitle.setBackground(new java.awt.Color(33, 33, 33));
+
+        jSeparator2.setBackground(new java.awt.Color(107, 92, 71));
+        jSeparator2.setForeground(new java.awt.Color(107, 92, 71));
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(107, 92, 71), 2));
+        jSeparator2.setPreferredSize(new java.awt.Dimension(3, 3));
+
+        jLabel1.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel1.setFont(new java.awt.Font("Castellar", 1, 32)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setText("Movie Details");
+
+        javax.swing.GroupLayout HeaderTitleLayout = new javax.swing.GroupLayout(HeaderTitle);
+        HeaderTitle.setLayout(HeaderTitleLayout);
+        HeaderTitleLayout.setHorizontalGroup(
+            HeaderTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderTitleLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        HeaderTitleLayout.setVerticalGroup(
+            HeaderTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderTitleLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        IMG_Banner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/Suzume no Tojimari_Large.jpg"))); // NOI18N
+
+        MovieTitle.setFont(new java.awt.Font("Cormorant Infant Medium", 0, 60)); // NOI18N
+        MovieTitle.setForeground(new java.awt.Color(255, 255, 255));
+        MovieTitle.setText("Movie Title");
+        MovieTitle.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+        jSeparator3.setBackground(new java.awt.Color(107, 92, 71));
+        jSeparator3.setForeground(new java.awt.Color(107, 92, 71));
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(107, 92, 71), 10));
+        jSeparator3.setMinimumSize(new java.awt.Dimension(50, 0));
+        jSeparator3.setPreferredSize(new java.awt.Dimension(50, 3));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(HeaderTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(backButton)
-                .addContainerGap(1151, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addComponent(IMG_Banner, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(MovieTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {MovieTitle, jSeparator3});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(backButton)
-                .addContainerGap(577, Short.MAX_VALUE))
+                .addComponent(Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(HeaderTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(IMG_Banner, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(MovieTitle)
+                        .addGap(0, 0, 0)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 253, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -71,6 +241,15 @@ public class MovieDetails extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Header;
+    private javax.swing.JPanel HeaderTitle;
+    private javax.swing.JLabel IMG_Banner;
+    private javax.swing.JLabel MovieTitle;
     private javax.swing.JButton backButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     // End of variables declaration//GEN-END:variables
 }

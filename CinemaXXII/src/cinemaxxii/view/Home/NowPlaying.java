@@ -64,7 +64,6 @@ public class NowPlaying extends javax.swing.JPanel {
                         
                         try {
                         bannerIMG2.setIcon(new javax.swing.ImageIcon(new java.net.URL(url2)));
-                        bannerIMG2.setName("");
                         Title1.setText(title2);
                         buyButton2.setEnabled(true);                        
                         }catch (java.net.MalformedURLException e) {
@@ -76,7 +75,6 @@ public class NowPlaying extends javax.swing.JPanel {
                         
                         try {
                         bannerIMG.setIcon(new javax.swing.ImageIcon(new java.net.URL(url1)));
-                        bannerIMG.setName("");
                         Title.setText(title);
                         buyButton.setEnabled(true);
                         }catch (java.net.MalformedURLException e) {
@@ -88,7 +86,6 @@ public class NowPlaying extends javax.swing.JPanel {
                         
                         try {
                         bannerIMG3.setIcon(new javax.swing.ImageIcon(new java.net.URL(url3)));
-                        bannerIMG3.setName("");
                         Title2.setText(title3);
                         buyButton3.setEnabled(true);
                         }catch (java.net.MalformedURLException e) {
@@ -128,6 +125,9 @@ public class NowPlaying extends javax.swing.JPanel {
         Title2 = new javax.swing.JLabel();
         bannerIMG3 = new javax.swing.JLabel();
         buyButton3 = new javax.swing.JButton();
+        HeaderTitle = new javax.swing.JPanel();
+        jSeparator2 = new javax.swing.JSeparator();
+        HTitle = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(43, 43, 43));
         setToolTipText("");
@@ -195,12 +195,12 @@ public class NowPlaying extends javax.swing.JPanel {
         BannerLayout.setVerticalGroup(
             BannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BannerLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(HeaderBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bannerIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buyButton)
                 .addContainerGap())
         );
 
@@ -263,12 +263,12 @@ public class NowPlaying extends javax.swing.JPanel {
         Banner4Layout.setVerticalGroup(
             Banner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Banner4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(HeaderBanner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bannerIMG2, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buyButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buyButton2)
                 .addContainerGap())
         );
 
@@ -331,13 +331,44 @@ public class NowPlaying extends javax.swing.JPanel {
         Banner5Layout.setVerticalGroup(
             Banner5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Banner5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(HeaderBanner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bannerIMG3, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buyButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buyButton3)
                 .addContainerGap())
+        );
+
+        HeaderTitle.setBackground(new java.awt.Color(33, 33, 33));
+
+        jSeparator2.setBackground(new java.awt.Color(107, 92, 71));
+        jSeparator2.setForeground(new java.awt.Color(107, 92, 71));
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(107, 92, 71), 2));
+        jSeparator2.setPreferredSize(new java.awt.Dimension(3, 3));
+
+        HTitle.setFont(new java.awt.Font("Castellar", 1, 32)); // NOI18N
+        HTitle.setForeground(new java.awt.Color(204, 204, 204));
+        HTitle.setText("Now Playing");
+
+        javax.swing.GroupLayout HeaderTitleLayout = new javax.swing.GroupLayout(HeaderTitle);
+        HeaderTitle.setLayout(HeaderTitleLayout);
+        HeaderTitleLayout.setHorizontalGroup(
+            HeaderTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 1920, Short.MAX_VALUE)
+            .addGroup(HeaderTitleLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(HTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        HeaderTitleLayout.setVerticalGroup(
+            HeaderTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderTitleLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(HTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -345,13 +376,14 @@ public class NowPlaying extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(Banner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 58, Short.MAX_VALUE)
+                .addGap(57, 57, 57)
                 .addComponent(Banner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(57, 57, 57)
                 .addComponent(Banner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
+            .addComponent(HeaderTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Banner, Banner4, Banner5});
@@ -359,7 +391,8 @@ public class NowPlaying extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(367, Short.MAX_VALUE)
+                .addComponent(HeaderTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(Banner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Banner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -427,9 +460,11 @@ public class NowPlaying extends javax.swing.JPanel {
     private javax.swing.JPanel Banner;
     private javax.swing.JPanel Banner4;
     private javax.swing.JPanel Banner5;
+    private javax.swing.JLabel HTitle;
     private javax.swing.JPanel HeaderBanner;
     private javax.swing.JPanel HeaderBanner4;
     private javax.swing.JPanel HeaderBanner5;
+    private javax.swing.JPanel HeaderTitle;
     private javax.swing.JLabel Title;
     private javax.swing.JLabel Title1;
     private javax.swing.JLabel Title2;
@@ -439,5 +474,6 @@ public class NowPlaying extends javax.swing.JPanel {
     private javax.swing.JButton buyButton;
     private javax.swing.JButton buyButton2;
     private javax.swing.JButton buyButton3;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

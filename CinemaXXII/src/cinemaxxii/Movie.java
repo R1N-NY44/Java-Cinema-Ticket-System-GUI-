@@ -12,16 +12,18 @@ public class Movie {
     private int movieId;
     private String title;
     private String cover;
+    private String banner;
     private String synopsis;
     private String genre;
     private String duration;
     private String showDate;
     private String theater;
 
-    public Movie(int movieId, String title, String cover, String synopsis, String genre, String duration, String showDate, String theater) {
+    public Movie(int movieId, String title, String cover, String banner, String synopsis, String genre, String duration, String showDate, String theater) {
         this.movieId = movieId;
         this.title = title;
         this.cover = cover;
+        this.banner = banner;
         this.synopsis = synopsis;
         this.genre = genre;
         this.duration = duration;
@@ -40,6 +42,10 @@ public class Movie {
 
     public String getCover() {
         return cover;
+    }
+    
+    public String getBanner() {
+        return banner;
     }
 
     public String getSynopsis() {
@@ -73,6 +79,10 @@ public class Movie {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+    
+    public void setBanner(String banner) {
+        this.banner = banner;
     }
 
     public void setSynopsis(String synopsis) {
