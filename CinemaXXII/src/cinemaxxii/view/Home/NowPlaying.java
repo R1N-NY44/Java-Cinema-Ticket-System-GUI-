@@ -59,24 +59,24 @@ public class NowPlaying extends javax.swing.JPanel {
                 for (Movie movie : movies) {
                     // Menentukan foto berdasarkan nomor urutan atau kondisi tertentu
                     if (count == 0) {
-                        String url1 = movie.getCover();
-                        String title = movie.getTitle();
-                        try {
-                        bannerIMG.setIcon(new javax.swing.ImageIcon(new java.net.URL(url1)));
-                        bannerIMG.setName("");
-                        Title.setText(title);
-    //                    buyButton.setEnabled(true);
-                        }catch (java.net.MalformedURLException e) {
-                            // Handle the exception
-                        }
-                    } else if (count == 1) {
                         String url2 = movie.getCover();
                         String title2 = movie.getTitle();
                         try {
                         bannerIMG2.setIcon(new javax.swing.ImageIcon(new java.net.URL(url2)));
                         bannerIMG2.setName("");
                         Title1.setText(title2);
-    //                    buyButton2.setEnabled(true);
+                        buyButton2.setEnabled(true);                        
+                        }catch (java.net.MalformedURLException e) {
+                            // Handle the exception
+                        }
+                    } else if (count == 1) {
+                        String url1 = movie.getCover();
+                        String title = movie.getTitle();
+                        try {
+                        bannerIMG.setIcon(new javax.swing.ImageIcon(new java.net.URL(url1)));
+                        bannerIMG.setName("");
+                        Title.setText(title);
+                        buyButton.setEnabled(true);
                         }catch (java.net.MalformedURLException e) {
                             // Handle the exception
                         }
@@ -87,7 +87,7 @@ public class NowPlaying extends javax.swing.JPanel {
                         bannerIMG3.setIcon(new javax.swing.ImageIcon(new java.net.URL(url3)));
                         bannerIMG3.setName("");
                         Title2.setText(title3);
-    //                    buyButton3.setEnabled(true);
+                        buyButton3.setEnabled(true);
                         }catch (java.net.MalformedURLException e) {
                             // Handle the exception
                         }
@@ -142,7 +142,7 @@ public class NowPlaying extends javax.swing.JPanel {
 
         Title.setFont(new java.awt.Font("Cormorant Infant SemiBold", 0, 48)); // NOI18N
         Title.setForeground(new java.awt.Color(255, 255, 255));
-        Title.setText("Your Name");
+        Title.setText("=====[No Movie]=====");
 
         javax.swing.GroupLayout HeaderBannerLayout = new javax.swing.GroupLayout(HeaderBanner);
         HeaderBanner.setLayout(HeaderBannerLayout);
@@ -169,6 +169,7 @@ public class NowPlaying extends javax.swing.JPanel {
         buyButton.setFont(new java.awt.Font("Castellar", 1, 26)); // NOI18N
         buyButton.setForeground(new java.awt.Color(255, 255, 255));
         buyButton.setText("Buy Ticket");
+        buyButton.setEnabled(false);
         buyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buyButtonActionPerformed(evt);
@@ -185,9 +186,9 @@ public class NowPlaying extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(HeaderBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BannerLayout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+                .addContainerGap(105, Short.MAX_VALUE)
                 .addComponent(bannerIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         BannerLayout.setVerticalGroup(
             BannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,16 +210,16 @@ public class NowPlaying extends javax.swing.JPanel {
 
         Title1.setFont(new java.awt.Font("Cormorant Infant SemiBold", 0, 48)); // NOI18N
         Title1.setForeground(new java.awt.Color(255, 255, 255));
-        Title1.setText("The Garden of  Words");
+        Title1.setText("=====[No Movie]=====");
 
         javax.swing.GroupLayout HeaderBanner4Layout = new javax.swing.GroupLayout(HeaderBanner4);
         HeaderBanner4.setLayout(HeaderBanner4Layout);
         HeaderBanner4Layout.setHorizontalGroup(
             HeaderBanner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HeaderBanner4Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(Title1)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         HeaderBanner4Layout.setVerticalGroup(
             HeaderBanner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,6 +237,7 @@ public class NowPlaying extends javax.swing.JPanel {
         buyButton2.setFont(new java.awt.Font("Castellar", 1, 26)); // NOI18N
         buyButton2.setForeground(new java.awt.Color(255, 255, 255));
         buyButton2.setText("Buy Ticket");
+        buyButton2.setEnabled(false);
         buyButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buyButton2ActionPerformed(evt);
@@ -276,16 +278,16 @@ public class NowPlaying extends javax.swing.JPanel {
 
         Title2.setFont(new java.awt.Font("Cormorant Infant SemiBold", 0, 48)); // NOI18N
         Title2.setForeground(new java.awt.Color(255, 255, 255));
-        Title2.setText("Suzume no Tojimari");
+        Title2.setText("=====[No Movie]=====");
 
         javax.swing.GroupLayout HeaderBanner5Layout = new javax.swing.GroupLayout(HeaderBanner5);
         HeaderBanner5.setLayout(HeaderBanner5Layout);
         HeaderBanner5Layout.setHorizontalGroup(
             HeaderBanner5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HeaderBanner5Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(Title2)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         HeaderBanner5Layout.setVerticalGroup(
             HeaderBanner5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,6 +305,7 @@ public class NowPlaying extends javax.swing.JPanel {
         buyButton3.setFont(new java.awt.Font("Castellar", 1, 26)); // NOI18N
         buyButton3.setForeground(new java.awt.Color(255, 255, 255));
         buyButton3.setText("Buy Ticket");
+        buyButton3.setEnabled(false);
         buyButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buyButton3ActionPerformed(evt);
@@ -340,13 +343,13 @@ public class NowPlaying extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(Banner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 119, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 58, Short.MAX_VALUE)
                 .addComponent(Banner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(Banner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Banner, Banner4, Banner5});
@@ -386,7 +389,7 @@ public class NowPlaying extends javax.swing.JPanel {
     private javax.swing.JPanel Banner;
     private javax.swing.JPanel Banner4;
     private javax.swing.JPanel Banner5;
-    private javax.swing.JPanel HeaderBanner;    
+    private javax.swing.JPanel HeaderBanner;
     private javax.swing.JPanel HeaderBanner4;
     private javax.swing.JPanel HeaderBanner5;
     private javax.swing.JLabel Title;
