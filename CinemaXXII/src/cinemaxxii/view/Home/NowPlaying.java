@@ -4,11 +4,14 @@
  */
 package cinemaxxii.view.Home;
 
+import cinemaxxii.Movie;
+import cinemaxxii.Movie_db;
+import java.sql.SQLException;
 import cinemaxxii.display.DisplayFrame;
 import cinemaxxii.view.MovieDetail.MovieDetails;
+import java.util.ArrayList;
 import javax.swing.JPanel;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,24 +27,78 @@ public class NowPlaying extends javax.swing.JPanel {
     public NowPlaying(DisplayFrame displayFrame) {
         initComponents();
         this.displayFrame = displayFrame;
+        displayMovies();
         
-        String url1 = "https://cdn.discordapp.com/attachments/1025234293976481803/1185280983482769529/YourName.jpg";
-        String url2 = "https://cdn.discordapp.com/attachments/1025234293976481803/1185306535308578856/The_Garden_of_Words.jpg";
-        String url3 = "https://cdn.discordapp.com/attachments/1025234293976481803/1185299490027086066/Suzume_no_Tojimari.jpg";
-        
-        try {
-            bannerIMG.setIcon(new javax.swing.ImageIcon(new java.net.URL(url1)));
-            bannerIMG.setName("");
-            
-            bannerIMG2.setIcon(new javax.swing.ImageIcon(new java.net.URL(url2)));
-            bannerIMG2.setName("");
-            
-            bannerIMG3.setIcon(new javax.swing.ImageIcon(new java.net.URL(url3)));
-            bannerIMG3.setName("");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        String url1 = "https://cdn.discordapp.com/attachments/1025234293976481803/1185280983482769529/YourName.jpg";
+//        String url2 = "https://cdn.discordapp.com/attachments/1025234293976481803/1185306535308578856/The_Garden_of_Words.jpg";
+//        String url3 = "https://cdn.discordapp.com/attachments/1025234293976481803/1185299490027086066/Suzume_no_Tojimari.jpg";
+//        
+//        try {
+//            bannerIMG.setIcon(new javax.swing.ImageIcon(new java.net.URL(url1)));
+//            bannerIMG.setName("");
+//            
+//            bannerIMG2.setIcon(new javax.swing.ImageIcon(new java.net.URL(url2)));
+//            bannerIMG2.setName("");
+//            
+//            bannerIMG3.setIcon(new javax.swing.ImageIcon(new java.net.URL(url3)));
+//            bannerIMG3.setName("");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
+    
+        private Movie_db conn = new Movie_db();
+
+        private void displayMovies() {
+
+            try {
+                ArrayList<Movie> movies = conn.dbMovies();
+
+                int count = 0;
+
+                for (Movie movie : movies) {
+                    // Menentukan foto berdasarkan nomor urutan atau kondisi tertentu
+                    if (count == 0) {
+                        String url1 = movie.getCover();
+                        String title = movie.getTitle();
+                        try {
+                        bannerIMG.setIcon(new javax.swing.ImageIcon(new java.net.URL(url1)));
+                        bannerIMG.setName("");
+                        Title.setText(title);
+    //                    buyButton.setEnabled(true);
+                        }catch (java.net.MalformedURLException e) {
+                            // Handle the exception
+                        }
+                    } else if (count == 1) {
+                        String url2 = movie.getCover();
+                        String title2 = movie.getTitle();
+                        try {
+                        bannerIMG2.setIcon(new javax.swing.ImageIcon(new java.net.URL(url2)));
+                        bannerIMG2.setName("");
+                        Title1.setText(title2);
+    //                    buyButton2.setEnabled(true);
+                        }catch (java.net.MalformedURLException e) {
+                            // Handle the exception
+                        }
+                    } else if (count == 2) {
+                        String url3 = movie.getCover();
+                        String title3 = movie.getTitle();
+                        try {
+                        bannerIMG3.setIcon(new javax.swing.ImageIcon(new java.net.URL(url3)));
+                        bannerIMG3.setName("");
+                        Title2.setText(title3);
+    //                    buyButton3.setEnabled(true);
+                        }catch (java.net.MalformedURLException e) {
+                            // Handle the exception
+                        }
+                    }
+                    count++;
+                }
+            }catch (SQLException ex){
+                System.out.println("Eksepsi: "+ ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Exception: "+ ex.getMessage());
+            }
+        }
     
     
 
