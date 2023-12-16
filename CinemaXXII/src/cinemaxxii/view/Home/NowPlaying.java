@@ -20,8 +20,9 @@ import javax.swing.JOptionPane;
 public class NowPlaying extends javax.swing.JPanel {
 
     
-    /**     jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/Kuro Neko.png")));
+    /**
      * Creates new form HomePage
+     * jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/Kuro Neko.png")));  
      */
     private final DisplayFrame displayFrame;
     public NowPlaying(DisplayFrame displayFrame) {
@@ -48,7 +49,6 @@ public class NowPlaying extends javax.swing.JPanel {
     }
     
         private Movie_db conn = new Movie_db();
-
         private void displayMovies() {
 
             try {
@@ -61,6 +61,7 @@ public class NowPlaying extends javax.swing.JPanel {
                     if (count == 0) {
                         String url2 = movie.getCover();
                         String title2 = movie.getTitle();
+                        
                         try {
                         bannerIMG2.setIcon(new javax.swing.ImageIcon(new java.net.URL(url2)));
                         bannerIMG2.setName("");
@@ -72,6 +73,7 @@ public class NowPlaying extends javax.swing.JPanel {
                     } else if (count == 1) {
                         String url1 = movie.getCover();
                         String title = movie.getTitle();
+                        
                         try {
                         bannerIMG.setIcon(new javax.swing.ImageIcon(new java.net.URL(url1)));
                         bannerIMG.setName("");
@@ -83,6 +85,7 @@ public class NowPlaying extends javax.swing.JPanel {
                     } else if (count == 2) {
                         String url3 = movie.getCover();
                         String title3 = movie.getTitle();
+                        
                         try {
                         bannerIMG3.setIcon(new javax.swing.ImageIcon(new java.net.URL(url3)));
                         bannerIMG3.setName("");
@@ -98,10 +101,9 @@ public class NowPlaying extends javax.swing.JPanel {
                 System.out.println("Eksepsi: "+ ex.getMessage());
                 JOptionPane.showMessageDialog(null, "Exception: "+ ex.getMessage());
             }
-        }
+    }
+        
     
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -369,19 +371,55 @@ public class NowPlaying extends javax.swing.JPanel {
 
         getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private int idMov1, idMov2, idMov3;
+    
     private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
         // TODO add your handling code here:
-        JPanel newPanel = new MovieDetails(displayFrame);  // Gantilah dengan panel yang baru
-        displayFrame.changeDisplayPanel(newPanel);
+        try {
+            // mengambil arraylist movie
+            ArrayList<Movie> movies = conn.dbMovies();
+            // mengambil index ke 2 (1 di array)
+            Movie mov = movies.get(1);
+            // mengambil id dari index 2
+            idMov2 = mov.getMovieId();
+            
+            //memanggil objek JPanel dari MovideDetails, kemudian memasukkan nya di dalam method changeDisplayPanel
+            JPanel newPanel = new MovieDetails(displayFrame, idMov2);  
+            displayFrame.changeDisplayPanel(newPanel);
+        }catch (SQLException ex){
+            System.out.println("Eksepsi: "+ ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Exception: "+ ex.getMessage());
+        }
+                
     }//GEN-LAST:event_buyButtonActionPerformed
 
     private void buyButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButton2ActionPerformed
         // TODO add your handling code here:
+        try {
+            ArrayList<Movie> movies = conn.dbMovies();
+            Movie mov = movies.get(0);
+            idMov1 = mov.getMovieId();
+            JPanel newPanel = new MovieDetails(displayFrame, idMov1);
+        displayFrame.changeDisplayPanel(newPanel);
+        }catch (SQLException ex){
+            System.out.println("Eksepsi: "+ ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Exception: "+ ex.getMessage());
+        }
     }//GEN-LAST:event_buyButton2ActionPerformed
 
     private void buyButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButton3ActionPerformed
         // TODO add your handling code here:
+        try {
+            ArrayList<Movie> movies = conn.dbMovies();
+            Movie mov = movies.get(2);
+            idMov3 = mov.getMovieId();
+            JPanel newPanel = new MovieDetails(displayFrame, idMov3);  
+        displayFrame.changeDisplayPanel(newPanel);
+        }catch (SQLException ex){
+            System.out.println("Eksepsi: "+ ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Exception: "+ ex.getMessage());
+        }
     }//GEN-LAST:event_buyButton3ActionPerformed
 
 

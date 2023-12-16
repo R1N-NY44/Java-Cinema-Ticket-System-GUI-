@@ -26,8 +26,8 @@ public class ComingSoon extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(153, 255, 204));
-        setPreferredSize(new java.awt.Dimension(384, 0));
+        setBackground(new java.awt.Color(43, 43, 43));
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -37,7 +37,7 @@ public class ComingSoon extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

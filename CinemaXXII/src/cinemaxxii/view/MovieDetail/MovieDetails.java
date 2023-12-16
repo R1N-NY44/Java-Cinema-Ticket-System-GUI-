@@ -18,9 +18,10 @@ public class MovieDetails extends javax.swing.JPanel {
     /**
      * Creates new form MovieDetails
      */
-    public MovieDetails(DisplayFrame displayFrame) {
+    public MovieDetails(DisplayFrame displayFrame, int movId) {
         initComponents();
-        this.displayFrame = displayFrame;    
+        this.displayFrame = displayFrame;
+        System.out.println(movId);
     }
 
     /**
@@ -34,7 +35,8 @@ public class MovieDetails extends javax.swing.JPanel {
 
         backButton = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(102, 255, 204));
+        setBackground(new java.awt.Color(43, 43, 43));
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
         backButton.setText("◀️ ️Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -50,14 +52,14 @@ public class MovieDetails extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(backButton)
-                .addContainerGap(1081, Short.MAX_VALUE))
+                .addContainerGap(1151, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(backButton)
-                .addContainerGap(612, Short.MAX_VALUE))
+                .addContainerGap(577, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
