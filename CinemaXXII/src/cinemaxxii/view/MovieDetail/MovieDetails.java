@@ -4,11 +4,20 @@
  */
 package cinemaxxii.view.MovieDetail;
 
-import cinemaxxii.DBConnection;
+import cinemaxxii.Database;
 import cinemaxxii.Movie;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import cinemaxxii.display.DisplayFrame;
+import cinemaxxii.theater.StudioA;
+import cinemaxxii.theater.StudioB;
 import cinemaxxii.view.Home.HomeDisplay;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,7 +31,7 @@ import java.sql.ResultSet;
 public class MovieDetails extends javax.swing.JPanel {
 
     private final DisplayFrame displayFrame;
-    private final DBConnection k = new DBConnection();
+    private final Database k = new Database();
     
     /**
      * Creates new form MovieDetails
@@ -32,6 +41,7 @@ public class MovieDetails extends javax.swing.JPanel {
         this.displayFrame = displayFrame;
         
         displayMovies(getId);
+        Time1.setForeground(new java.awt.Color(200, 152, 84));
     }
     
 public void displayMovies(int movieId) {
@@ -50,18 +60,52 @@ public void displayMovies(int movieId) {
                 String banner = rs.getString("Banner");
                 String synopsis = rs.getString("Synopsis");
                 String genre = rs.getString("Genre");
+                String director = rs.getString("Director");
                 String duration = rs.getString("Duration");
                 String showDate = rs.getString("Show Date");
                 String theater = rs.getString("Theater");
 
-                Movie movie = new Movie(id, title, cover, banner, synopsis, genre, duration, showDate, theater);
+                Movie movie = new Movie(id, title, cover, banner, synopsis, genre, director, duration, showDate, theater);
                 movies.add(movie);
             }
             
             for (Movie movie : movies) {
                 try {
                     IMG_Banner.setIcon(new javax.swing.ImageIcon(new java.net.URL(movie.getBanner())));
-                    MovieTitle.setText(movie.getTitle());
+                    MovieTitle.setText(movie.getTitle()+"  ");
+                    Synopsis.setText(movie.getSynopsis());
+                    Director.setText(": "+movie.getDirector());
+                    Genre.setText(": "+movie.getGenre());
+                    Duration.setText(": "+movie.getDuration());
+                    //Date.setText(movie.getShowDate());
+                    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMMM yyyy");
+                    try {
+                        Date date = inputFormat.parse(movie.getShowDate());
+                        String formattedDate = outputFormat.format(date);
+                        Date.setText(formattedDate);  // Output: 17 Desember 2023
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    
+                    if (movie.getTheater().equals("A")) {
+                        StudioPanel.removeAll();
+                        StudioA Studio  = new StudioA();
+                        StudioPanel.add(Studio);
+                        StudioPanel.revalidate();
+                        StudioPanel.repaint();
+                    } else if (movie.getTheater().equals("B")) {
+                        StudioPanel.removeAll();
+                        StudioB Studio  = new StudioB();
+                        StudioPanel.add(Studio);
+                        StudioPanel.revalidate();
+                        StudioPanel.repaint();
+                    } else {
+                        // Default jika tidak cocok dengan StudioA atau StudioB
+                    }
+
+                    
+                    
                 } catch (java.net.MalformedURLException e) {
                     e.printStackTrace();
                 }
@@ -94,6 +138,25 @@ public void displayMovies(int movieId) {
         IMG_Banner = new javax.swing.JLabel();
         MovieTitle = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        Synopsis = new javax.swing.JTextArea();
+        jSeparator4 = new javax.swing.JSeparator();
+        TicketPanel = new javax.swing.JPanel();
+        TimePanel = new javax.swing.JPanel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        StudioPanel = new javax.swing.JPanel();
+        Time1 = new javax.swing.JButton();
+        Time2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        Date = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        Duration = new javax.swing.JLabel();
+        Genre = new javax.swing.JLabel();
+        Director = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(43, 43, 43));
         setMinimumSize(new java.awt.Dimension(0, 3));
@@ -192,9 +255,169 @@ public void displayMovies(int movieId) {
         jSeparator3.setBackground(new java.awt.Color(107, 92, 71));
         jSeparator3.setForeground(new java.awt.Color(107, 92, 71));
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(107, 92, 71), 10));
+        jSeparator3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 147, 106), 10));
         jSeparator3.setMinimumSize(new java.awt.Dimension(50, 0));
         jSeparator3.setPreferredSize(new java.awt.Dimension(50, 3));
+
+        Synopsis.setEditable(false);
+        Synopsis.setBackground(new java.awt.Color(43, 43, 43));
+        Synopsis.setColumns(20);
+        Synopsis.setFont(new java.awt.Font("Cormorant Infant Medium", 0, 22)); // NOI18N
+        Synopsis.setForeground(new java.awt.Color(255, 255, 255));
+        Synopsis.setLineWrap(true);
+        Synopsis.setRows(5);
+        Synopsis.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. Ipsum suspendisse ultrices gravida dictum fusce ut placerat orci nulla. Porttitor rhoncus dolor purus non enim praesent elementum facilisis. Porttitor leo a diam sollicitudin tempor id eu. Aliquam etiam erat velit scelerisque in dictum non. Amet dictum sit amet justo donec enim diam vulputate. Proin fermentum leo vel orci porta non pulvinar. Faucibus purus in massa tempor nec feugiat nisl pretium fusce. Fusce ut placerat orci nulla pellentesque. Ac tortor dignissim convallis aenean et tortor. Consequat id porta nibh venenatis cras sed.\n\nFacilisis magna etiam tempor orci eu lobortis elementum nibh. Fusce id velit ut tortor pretium viverra. Faucibus purus in massa tempor nec feugiat nisl pretium. Malesuada bibendum arcu vitae elementum curabitur. Amet volutpat consequat mauris nunc congue nisi. Feugiat vivamus at augue eget arcu dictum varius. ");
+        Synopsis.setWrapStyleWord(true);
+        Synopsis.setBorder(null);
+
+        jSeparator4.setBackground(new java.awt.Color(107, 92, 71));
+        jSeparator4.setForeground(new java.awt.Color(107, 92, 71));
+        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 147, 106), 3));
+        jSeparator4.setPreferredSize(new java.awt.Dimension(50, 3));
+
+        TicketPanel.setBackground(new java.awt.Color(40, 40, 40));
+        TicketPanel.setPreferredSize(new java.awt.Dimension(424, 800));
+
+        TimePanel.setBackground(new java.awt.Color(33, 33, 33));
+
+        jSeparator5.setBackground(new java.awt.Color(107, 92, 71));
+        jSeparator5.setForeground(new java.awt.Color(107, 92, 71));
+        jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(107, 92, 71), 2));
+        jSeparator5.setPreferredSize(new java.awt.Dimension(3, 3));
+
+        jLabel4.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel4.setFont(new java.awt.Font("Castellar", 1, 32)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel4.setText("Show Time");
+
+        jSeparator6.setBackground(new java.awt.Color(107, 92, 71));
+        jSeparator6.setForeground(new java.awt.Color(107, 92, 71));
+        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(107, 92, 71), 2));
+        jSeparator6.setPreferredSize(new java.awt.Dimension(3, 3));
+
+        javax.swing.GroupLayout TimePanelLayout = new javax.swing.GroupLayout(TimePanel);
+        TimePanel.setLayout(TimePanelLayout);
+        TimePanelLayout.setHorizontalGroup(
+            TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(TimePanelLayout.createSequentialGroup()
+                .addContainerGap(105, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addContainerGap(105, Short.MAX_VALUE))
+            .addGroup(TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(TimePanelLayout.createSequentialGroup()
+                    .addGap(0, 0, 0)
+                    .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, 0)))
+        );
+        TimePanelLayout.setVerticalGroup(
+            TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TimePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(TimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TimePanelLayout.createSequentialGroup()
+                    .addGap(0, 0, 0)
+                    .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(10, Short.MAX_VALUE)))
+        );
+
+        StudioPanel.setLayout(new java.awt.BorderLayout());
+
+        Time1.setBackground(new java.awt.Color(40, 40, 40));
+        Time1.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Time1.setForeground(new java.awt.Color(204, 204, 204));
+        Time1.setText("06.00");
+        Time1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Time1ActionPerformed(evt);
+            }
+        });
+
+        Time2.setBackground(new java.awt.Color(40, 40, 40));
+        Time2.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Time2.setForeground(new java.awt.Color(204, 204, 204));
+        Time2.setText("18.00");
+        Time2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Time2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout TicketPanelLayout = new javax.swing.GroupLayout(TicketPanel);
+        TicketPanel.setLayout(TicketPanelLayout);
+        TicketPanelLayout.setHorizontalGroup(
+            TicketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TicketPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(TicketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(StudioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46))
+            .addGroup(TicketPanelLayout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(Time1)
+                .addGap(101, 101, 101)
+                .addComponent(Time2)
+                .addGap(86, 86, 86))
+        );
+
+        TicketPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {StudioPanel, TimePanel});
+
+        TicketPanelLayout.setVerticalGroup(
+            TicketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TicketPanelLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(TimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(TicketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Time1)
+                    .addComponent(Time2))
+                .addGap(58, 58, 58)
+                .addComponent(StudioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+
+        jLabel3.setFont(new java.awt.Font("Cormorant Infant Medium", 0, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Details  ");
+
+        Date.setFont(new java.awt.Font("Cormorant Infant Medium", 0, 32)); // NOI18N
+        Date.setForeground(new java.awt.Color(204, 204, 204));
+        Date.setText("12 January");
+
+        jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 147, 106), 2));
+        jSeparator7.setPreferredSize(new java.awt.Dimension(50, 3));
+
+        jLabel5.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Director");
+
+        jLabel6.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Genre");
+
+        jLabel7.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Duration");
+
+        Duration.setFont(new java.awt.Font("Cormorant Infant Medium", 0, 22)); // NOI18N
+        Duration.setForeground(new java.awt.Color(255, 255, 255));
+        Duration.setText(": 12 Years 10 minute");
+
+        Genre.setFont(new java.awt.Font("Cormorant Infant Medium", 0, 22)); // NOI18N
+        Genre.setForeground(new java.awt.Color(255, 255, 255));
+        Genre.setText(": Helikopter");
+
+        Director.setFont(new java.awt.Font("Cormorant Infant Medium", 0, 22)); // NOI18N
+        Director.setForeground(new java.awt.Color(255, 255, 255));
+        Director.setText(": Andrew Muschle");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -204,15 +427,38 @@ public void displayMovies(int movieId) {
             .addComponent(HeaderTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(74, 74, 74)
-                .addComponent(IMG_Banner, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(MovieTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Date)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(IMG_Banner, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MovieTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Synopsis, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel3)
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Director)
+                            .addComponent(Genre)
+                            .addComponent(Duration))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(TicketPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {MovieTitle, jSeparator3});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Synopsis, jSeparator4});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel3, jSeparator7});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,14 +468,39 @@ public void displayMovies(int movieId) {
                 .addComponent(HeaderTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(IMG_Banner, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(MovieTitle)
+                        .addGap(8, 8, 8)
+                        .addComponent(Date)
                         .addGap(0, 0, 0)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 253, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(MovieTitle)
+                                .addGap(0, 0, 0)
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Synopsis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(IMG_Banner, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, 0)
+                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(Director))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(Genre))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(Duration)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(TicketPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -239,17 +510,48 @@ public void displayMovies(int movieId) {
         displayFrame.changeDisplayPanel(homePanel);
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void Time1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Time1ActionPerformed
+        // TODO add your handling code here:
+        Time1.setForeground(new java.awt.Color(200, 152, 84));
+        Time2.setForeground(new java.awt.Color(204,204,204));
+    }//GEN-LAST:event_Time1ActionPerformed
+
+    private void Time2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Time2ActionPerformed
+        // TODO add your handling code here:
+        Time1.setForeground(new java.awt.Color(204,204,204));
+        Time2.setForeground(new java.awt.Color(200, 152, 84));
+    }//GEN-LAST:event_Time2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Date;
+    private javax.swing.JLabel Director;
+    private javax.swing.JLabel Duration;
+    private javax.swing.JLabel Genre;
     private javax.swing.JPanel Header;
     private javax.swing.JPanel HeaderTitle;
     private javax.swing.JLabel IMG_Banner;
     private javax.swing.JLabel MovieTitle;
+    private javax.swing.JPanel StudioPanel;
+    private javax.swing.JTextArea Synopsis;
+    private javax.swing.JPanel TicketPanel;
+    private javax.swing.JButton Time1;
+    private javax.swing.JButton Time2;
+    private javax.swing.JPanel TimePanel;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     // End of variables declaration//GEN-END:variables
 }

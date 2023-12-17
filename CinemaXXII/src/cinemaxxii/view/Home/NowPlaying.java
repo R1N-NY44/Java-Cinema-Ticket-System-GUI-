@@ -434,7 +434,7 @@ public class NowPlaying extends javax.swing.JPanel {
             Movie mov = movies.get(0);
             idMov1 = mov.getMovieId();
             JPanel newPanel = new MovieDetails(displayFrame, idMov1);
-        displayFrame.changeDisplayPanel(newPanel);
+            displayFrame.changeDisplayPanel(newPanel);
         }catch (SQLException ex){
             System.out.println("Eksepsi: "+ ex.getMessage());
             JOptionPane.showMessageDialog(null, "Exception: "+ ex.getMessage());
@@ -448,7 +448,7 @@ public class NowPlaying extends javax.swing.JPanel {
             Movie mov = movies.get(2);
             idMov3 = mov.getMovieId();
             JPanel newPanel = new MovieDetails(displayFrame, idMov3);  
-        displayFrame.changeDisplayPanel(newPanel);
+            displayFrame.changeDisplayPanel(newPanel);
         }catch (SQLException ex){
             System.out.println("Eksepsi: "+ ex.getMessage());
             JOptionPane.showMessageDialog(null, "Exception: "+ ex.getMessage());

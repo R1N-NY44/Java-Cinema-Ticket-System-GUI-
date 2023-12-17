@@ -15,17 +15,19 @@ public class Movie {
     private String banner;
     private String synopsis;
     private String genre;
+    private String director;
     private String duration;
     private String showDate;
     private String theater;
 
-    public Movie(int movieId, String title, String cover, String banner, String synopsis, String genre, String duration, String showDate, String theater) {
+    public Movie(int movieId, String title, String cover, String banner, String synopsis, String genre, String director, String duration, String showDate, String theater) {
         this.movieId = movieId;
         this.title = title;
         this.cover = cover;
         this.banner = banner;
         this.synopsis = synopsis;
         this.genre = genre;
+        this.director = director;
         this.duration = duration;
         this.showDate = showDate;
         this.theater = theater;
@@ -54,6 +56,10 @@ public class Movie {
 
     public String getGenre() {
         return genre;
+    }
+    
+    public String getDirector() {
+        return director;
     }
 
     public String getDuration() {
@@ -92,6 +98,10 @@ public class Movie {
     public void setGenre(String genre) {
         this.genre = genre;
     }
+    
+    public void setDirector(String director) {
+        this.director = director;
+    }
 
     public void setDuration(String duration) {
         this.duration = duration;
@@ -107,7 +117,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return String.format("Movie ID: %d, Title: %s, Genre: %s, Duration: %s, Show Date: %s, Theater: %s",
-                movieId, title, genre, duration, showDate, theater);
+        return String.format("Movie ID: %d, Title: %s, Genre: %s, Director: %s, Duration: %s, Show Date: %s, Theater: %s",
+            movieId, title, genre, director, duration, showDate, theater);
     }
 }
