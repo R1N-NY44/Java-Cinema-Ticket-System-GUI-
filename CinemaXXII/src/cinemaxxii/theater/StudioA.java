@@ -5,6 +5,7 @@
 package cinemaxxii.theater;
 
 import cinemaxxii.Studio;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,11 +16,14 @@ public class StudioA extends javax.swing.JPanel implements Studio{
     private String StudioName;
     private int StudioSeat;
     private int StudioPrice;
+    private ArrayList<Integer> selectedSeats = new ArrayList<>();
     /**
      * Creates new form StudioA
      */
-    public StudioA() {
+    public StudioA(String time) {
         initComponents();
+        
+        System.out.println("current "+time);
     }
 
     @Override
@@ -52,6 +56,23 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         return this.StudioPrice;
     }
 
+    public ArrayList<Integer> getSelectedSeats() {
+        return selectedSeats;
+    }
+    
+    private void toggleSeat(int seatNumber, javax.swing.JButton seatButton) {
+        if (selectedSeats.contains(seatNumber)) {
+            // Kursi sudah dipilih, hapus dari selectedSeats dan ubah warna tombol
+            selectedSeats.remove(Integer.valueOf(seatNumber));
+            seatButton.setBackground(new java.awt.Color(240, 240, 240));  // Warna default
+        } else {
+            // Kursi belum dipilih, tambahkan ke selectedSeats dan ubah warna tombol
+            selectedSeats.add(seatNumber);
+            seatButton.setBackground(new java.awt.Color(102, 102, 102));  // Warna yang diinginkan
+        }
+        // Tambahkan logika lain yang mungkin Anda perlukan setelah mengubah selectedSeats
+        System.out.println("Selected Seats: " + selectedSeats);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,24 +90,10 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         jSeparator4 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        Seat4 = new javax.swing.JToggleButton();
-        Seat3 = new javax.swing.JToggleButton();
-        Seat2 = new javax.swing.JToggleButton();
-        Seat = new javax.swing.JToggleButton();
-        Seat9 = new javax.swing.JToggleButton();
-        Seat10 = new javax.swing.JToggleButton();
-        Seat11 = new javax.swing.JToggleButton();
-        Seat12 = new javax.swing.JToggleButton();
-        Seat13 = new javax.swing.JToggleButton();
-        Seat14 = new javax.swing.JToggleButton();
-        Seat15 = new javax.swing.JToggleButton();
-        Seat16 = new javax.swing.JToggleButton();
-        Seat17 = new javax.swing.JToggleButton();
-        Seat18 = new javax.swing.JToggleButton();
-        Seat5 = new javax.swing.JToggleButton();
-        Seat6 = new javax.swing.JToggleButton();
-        Seat7 = new javax.swing.JToggleButton();
-        Seat8 = new javax.swing.JToggleButton();
+        jButton1 = new javax.swing.JButton();
+        beta1 = new javax.swing.JButton();
+        beta2 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(40, 40, 40));
         setForeground(new java.awt.Color(102, 102, 102));
@@ -160,185 +167,30 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         jSeparator3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 147, 106)));
         jSeparator3.setPreferredSize(new java.awt.Dimension(3, 2));
 
-        Seat4.setBackground(new java.awt.Color(168, 130, 77));
-        Seat4.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat4.setForeground(new java.awt.Color(255, 255, 255));
-        Seat4.setText("5A");
-        Seat4.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Print");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat4ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        Seat3.setBackground(new java.awt.Color(168, 130, 77));
-        Seat3.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat3.setForeground(new java.awt.Color(255, 255, 255));
-        Seat3.setText("4A");
-        Seat3.addActionListener(new java.awt.event.ActionListener() {
+        beta1.setText("Test1");
+        beta1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat3ActionPerformed(evt);
+                beta1ActionPerformed(evt);
             }
         });
 
-        Seat2.setBackground(new java.awt.Color(168, 130, 77));
-        Seat2.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat2.setForeground(new java.awt.Color(255, 255, 255));
-        Seat2.setText("2A");
-        Seat2.addActionListener(new java.awt.event.ActionListener() {
+        beta2.setText("Test2");
+        beta2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat2ActionPerformed(evt);
+                beta2ActionPerformed(evt);
             }
         });
 
-        Seat.setBackground(new java.awt.Color(168, 130, 77));
-        Seat.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat.setForeground(new java.awt.Color(255, 255, 255));
-        Seat.setText("1A");
-        Seat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeatActionPerformed(evt);
-            }
-        });
-
-        Seat9.setBackground(new java.awt.Color(168, 130, 77));
-        Seat9.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat9.setForeground(new java.awt.Color(255, 255, 255));
-        Seat9.setText("1A");
-        Seat9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat9ActionPerformed(evt);
-            }
-        });
-
-        Seat10.setBackground(new java.awt.Color(168, 130, 77));
-        Seat10.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat10.setForeground(new java.awt.Color(255, 255, 255));
-        Seat10.setText("2A");
-        Seat10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat10ActionPerformed(evt);
-            }
-        });
-
-        Seat11.setBackground(new java.awt.Color(168, 130, 77));
-        Seat11.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat11.setForeground(new java.awt.Color(255, 255, 255));
-        Seat11.setText("3A");
-        Seat11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat11ActionPerformed(evt);
-            }
-        });
-
-        Seat12.setBackground(new java.awt.Color(168, 130, 77));
-        Seat12.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat12.setForeground(new java.awt.Color(255, 255, 255));
-        Seat12.setText("4A");
-        Seat12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat12ActionPerformed(evt);
-            }
-        });
-
-        Seat13.setBackground(new java.awt.Color(168, 130, 77));
-        Seat13.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat13.setForeground(new java.awt.Color(255, 255, 255));
-        Seat13.setText("5A");
-        Seat13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat13ActionPerformed(evt);
-            }
-        });
-
-        Seat14.setBackground(new java.awt.Color(168, 130, 77));
-        Seat14.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat14.setForeground(new java.awt.Color(255, 255, 255));
-        Seat14.setText("1A");
-        Seat14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat14ActionPerformed(evt);
-            }
-        });
-
-        Seat15.setBackground(new java.awt.Color(168, 130, 77));
-        Seat15.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat15.setForeground(new java.awt.Color(255, 255, 255));
-        Seat15.setText("2A");
-        Seat15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat15ActionPerformed(evt);
-            }
-        });
-
-        Seat16.setBackground(new java.awt.Color(168, 130, 77));
-        Seat16.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat16.setForeground(new java.awt.Color(255, 255, 255));
-        Seat16.setText("3A");
-        Seat16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat16ActionPerformed(evt);
-            }
-        });
-
-        Seat17.setBackground(new java.awt.Color(168, 130, 77));
-        Seat17.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat17.setForeground(new java.awt.Color(255, 255, 255));
-        Seat17.setText("4A");
-        Seat17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat17ActionPerformed(evt);
-            }
-        });
-
-        Seat18.setBackground(new java.awt.Color(168, 130, 77));
-        Seat18.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat18.setForeground(new java.awt.Color(255, 255, 255));
-        Seat18.setText("5A");
-        Seat18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat18ActionPerformed(evt);
-            }
-        });
-
-        Seat5.setBackground(new java.awt.Color(168, 130, 77));
-        Seat5.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat5.setForeground(new java.awt.Color(255, 255, 255));
-        Seat5.setText("1A");
-        Seat5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat5ActionPerformed(evt);
-            }
-        });
-
-        Seat6.setBackground(new java.awt.Color(168, 130, 77));
-        Seat6.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat6.setForeground(new java.awt.Color(255, 255, 255));
-        Seat6.setText("2A");
-        Seat6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat6ActionPerformed(evt);
-            }
-        });
-
-        Seat7.setBackground(new java.awt.Color(168, 130, 77));
-        Seat7.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat7.setForeground(new java.awt.Color(255, 255, 255));
-        Seat7.setText("4A");
-        Seat7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat7ActionPerformed(evt);
-            }
-        });
-
-        Seat8.setBackground(new java.awt.Color(168, 130, 77));
-        Seat8.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 22)); // NOI18N
-        Seat8.setForeground(new java.awt.Color(255, 255, 255));
-        Seat8.setText("5A");
-        Seat8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Seat8ActionPerformed(evt);
-            }
-        });
+        jButton2.setFont(new java.awt.Font("Cormorant Infant Medium", 0, 22)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(204, 204, 204));
+        jButton2.setText("1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -346,58 +198,25 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(HeaderTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(123, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(beta2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(33, 33, 33)
+                        .addComponent(beta1)))
+                .addContainerGap(124, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Seat5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Seat6)
-                        .addGap(82, 82, 82)
-                        .addComponent(Seat7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Seat8))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(Seat14)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(Seat15)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(Seat16)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(Seat17)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(Seat18))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(Seat9)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(Seat10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(Seat11)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(Seat12)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(Seat13))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(Seat)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(Seat2)
-                            .addGap(82, 82, 82)
-                            .addComponent(Seat3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(Seat4))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jSeparator3, jSeparator4});
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Seat, Seat10, Seat11, Seat12, Seat13, Seat14, Seat15, Seat16, Seat17, Seat18, Seat2, Seat3, Seat4, Seat5, Seat6, Seat7, Seat8, Seat9});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,132 +229,44 @@ public class StudioA extends javax.swing.JPanel implements Studio{
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Seat)
-                    .addComponent(Seat2)
-                    .addComponent(Seat3)
-                    .addComponent(Seat4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Seat5)
-                    .addComponent(Seat6)
-                    .addComponent(Seat7)
-                    .addComponent(Seat8))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Seat9)
-                    .addComponent(Seat10)
-                    .addComponent(Seat11)
-                    .addComponent(Seat12)
-                    .addComponent(Seat13))
                 .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(217, 217, 217)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Seat14)
-                    .addComponent(Seat15)
-                    .addComponent(Seat16)
-                    .addComponent(Seat17)
-                    .addComponent(Seat18))
-                .addGap(0, 0, 0))
+                    .addComponent(jButton1)
+                    .addComponent(beta1))
+                .addGap(18, 18, 18)
+                .addComponent(beta2)
+                .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Seat, Seat10, Seat11, Seat12, Seat13, Seat14, Seat15, Seat16, Seat17, Seat18, Seat2, Seat3, Seat4, Seat5, Seat6, Seat7, Seat8, Seat9});
-
     }// </editor-fold>//GEN-END:initComponents
+    
 
-    private void SeatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeatActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SeatActionPerformed
+        for (Integer seat : selectedSeats) {
+                System.out.println("Email, Kursi " + seat);
+            }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void Seat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat2ActionPerformed
+    private void beta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beta1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Seat2ActionPerformed
+        toggleSeat(1, beta1);
+    }//GEN-LAST:event_beta1ActionPerformed
 
-    private void Seat3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat3ActionPerformed
+    private void beta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beta2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Seat3ActionPerformed
-
-    private void Seat4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat4ActionPerformed
-
-    private void Seat9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat9ActionPerformed
-
-    private void Seat10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat10ActionPerformed
-
-    private void Seat11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat11ActionPerformed
-
-    private void Seat12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat12ActionPerformed
-
-    private void Seat13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat13ActionPerformed
-
-    private void Seat14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat14ActionPerformed
-
-    private void Seat15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat15ActionPerformed
-
-    private void Seat16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat16ActionPerformed
-
-    private void Seat17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat17ActionPerformed
-
-    private void Seat18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat18ActionPerformed
-
-    private void Seat5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat5ActionPerformed
-
-    private void Seat6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat6ActionPerformed
-
-    private void Seat7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat7ActionPerformed
-
-    private void Seat8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Seat8ActionPerformed
+        toggleSeat(2, beta2);   
+    }//GEN-LAST:event_beta2ActionPerformed
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel HeaderTitle;
-    private javax.swing.JToggleButton Seat;
-    private javax.swing.JToggleButton Seat10;
-    private javax.swing.JToggleButton Seat11;
-    private javax.swing.JToggleButton Seat12;
-    private javax.swing.JToggleButton Seat13;
-    private javax.swing.JToggleButton Seat14;
-    private javax.swing.JToggleButton Seat15;
-    private javax.swing.JToggleButton Seat16;
-    private javax.swing.JToggleButton Seat17;
-    private javax.swing.JToggleButton Seat18;
-    private javax.swing.JToggleButton Seat2;
-    private javax.swing.JToggleButton Seat3;
-    private javax.swing.JToggleButton Seat4;
-    private javax.swing.JToggleButton Seat5;
-    private javax.swing.JToggleButton Seat6;
-    private javax.swing.JToggleButton Seat7;
-    private javax.swing.JToggleButton Seat8;
-    private javax.swing.JToggleButton Seat9;
+    private javax.swing.JButton beta1;
+    private javax.swing.JButton beta2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator2;

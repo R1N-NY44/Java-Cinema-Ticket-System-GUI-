@@ -36,6 +36,7 @@ public class MovieDetails extends javax.swing.JPanel {
     /**
      * Creates new form MovieDetails
      */
+    String timeDefault = "06.00";
     public MovieDetails(DisplayFrame displayFrame, int getId) {
         initComponents();
         this.displayFrame = displayFrame;
@@ -44,42 +45,61 @@ public class MovieDetails extends javax.swing.JPanel {
         Time1.setForeground(new java.awt.Color(200, 152, 84));
     }
     
-public void displayMovies(int movieId) {
-    try (Connection conn = k.getConnection();
-         PreparedStatement ps = conn.prepareStatement("SELECT * FROM film WHERE `MovieId` = ?;")) {
+    //Change The Mini Theater (Seat and etc)
+    public class MiniTheater {
+        private javax.swing.JPanel panel;
 
-        ps.setInt(1, movieId);
-
-        try (ResultSet rs = ps.executeQuery()) {
-            ArrayList<Movie> movies = new ArrayList<>();
-
-            while (rs.next()) {
-                int id = rs.getInt("MovieId");
-                String title = rs.getString("Title");
-                String cover = rs.getString("Cover");
-                String banner = rs.getString("Banner");
-                String synopsis = rs.getString("Synopsis");
-                String genre = rs.getString("Genre");
-                String director = rs.getString("Director");
-                String duration = rs.getString("Duration");
-                String showDate = rs.getString("Show Date");
-                String theater = rs.getString("Theater");
-
-                Movie movie = new Movie(id, title, cover, banner, synopsis, genre, director, duration, showDate, theater);
-                movies.add(movie);
-            }
-            
-            for (Movie movie : movies) {
-                try {
+        public MiniTheater(javax.swing.JPanel panel) {
+            this.panel = panel;
+        }
+    }
+    
+    
+    public String displayMovies(int movieId) {
+        try (Connection conn = k.getConnection();
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM film WHERE `MovieId` = ?;")) {
+    
+            ps.setInt(1, movieId);
+    
+            try (ResultSet rs = ps.executeQuery()) {
+                ArrayList<Movie> movies = new ArrayList<>();
+    
+                while (rs.next()) {
+                    int id = rs.getInt("MovieId");
+                    String title = rs.getString("Title");
+                    String cover = rs.getString("Cover");
+                    String banner = rs.getString("Banner");
+                    String synopsis = rs.getString("Synopsis");
+                    String genre = rs.getString("Genre");
+                    String director = rs.getString("Director");
+                    String duration = rs.getString("Duration");
+                    String showDate = rs.getString("Show Date");
+                    String theater = rs.getString("Theater");
+    
+                    Movie movie = new Movie(id, title, cover, banner, synopsis, genre, director, duration, showDate, theater);
+                    movies.add(movie);
+                }
+    
+                if (!movies.isEmpty()) {
+                    Movie movie = movies.get(0);
+    
                     IMG_Banner.setIcon(new javax.swing.ImageIcon(new java.net.URL(movie.getBanner())));
                     MovieTitle.setText(movie.getTitle()+"  ");
                     Synopsis.setText(movie.getSynopsis());
                     Director.setText(": "+movie.getDirector());
                     Genre.setText(": "+movie.getGenre());
                     Duration.setText(": "+movie.getDuration());
-                    //Date.setText(movie.getShowDate());
+//                    JPanel miniPanel = movie.get;
+                    
+//                    StudioPanel.removeAll();
+//                    StudioA Studio  = new StudioA(timeDefault);
+//                    StudioPanel.add(Studio);
+//                    StudioPanel.revalidate();
+//                    StudioPanel.repaint();
+    
                     SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
                     SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMMM yyyy");
+                    
                     try {
                         Date date = inputFormat.parse(movie.getShowDate());
                         String formattedDate = outputFormat.format(date);
@@ -87,10 +107,10 @@ public void displayMovies(int movieId) {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                    
+    
                     if (movie.getTheater().equals("A")) {
                         StudioPanel.removeAll();
-                        StudioA Studio  = new StudioA();
+                        StudioA Studio  = new StudioA(timeDefault);
                         StudioPanel.add(Studio);
                         StudioPanel.revalidate();
                         StudioPanel.repaint();
@@ -103,19 +123,18 @@ public void displayMovies(int movieId) {
                     } else {
                         // Default jika tidak cocok dengan StudioA atau StudioB
                     }
-
-                    
-                    
-                } catch (java.net.MalformedURLException e) {
-                    e.printStackTrace();
+    
+                    return movie.getTheater();
                 }
             }
+    
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
         }
-
-    } catch (SQLException e) {
-        e.printStackTrace();
+    
+        return null; // Return null jika tidak ada data atau terjadi kesalahan
     }
-}
+    
 
 
 
@@ -514,12 +533,18 @@ public void displayMovies(int movieId) {
         // TODO add your handling code here:
         Time1.setForeground(new java.awt.Color(200, 152, 84));
         Time2.setForeground(new java.awt.Color(204,204,204));
+        timeDefault = "06.00";
+        StudioPanel.revalidate();
+        StudioPanel.repaint();
     }//GEN-LAST:event_Time1ActionPerformed
 
     private void Time2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Time2ActionPerformed
         // TODO add your handling code here:
         Time1.setForeground(new java.awt.Color(204,204,204));
         Time2.setForeground(new java.awt.Color(200, 152, 84));
+        timeDefault = "18.00";
+        StudioPanel.revalidate();
+        StudioPanel.repaint();
     }//GEN-LAST:event_Time2ActionPerformed
 
 
