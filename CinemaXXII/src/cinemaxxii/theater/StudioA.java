@@ -13,50 +13,61 @@ import java.util.ArrayList;
  */
 public class StudioA extends javax.swing.JPanel implements Studio{
 
-    private String StudioName = "StudioA";
-    private int StudioSeat;
-    private int StudioPrice;
+    private String studioName = "StudioA";
+    private int studioPrice = 12000;
+    int totalSeat = 18;
+    private ArrayList<Integer> studioSeats = new ArrayList<>();
     private ArrayList<Integer> selectedSeats = new ArrayList<>();
+    
     /**
      * Creates new form StudioA
      */
     public StudioA(int movieId,String movieTitle, String time) {
         initComponents();
         
+        // Inisialisasi kursi
+        initializeStudioSeats();
+        
         StudioTitle.setText("Studio A ("+time+")"+movieId);
         System.out.println("======[Studio A]======");
         System.out.println("Time : "+time);
         System.out.println("======[Studio A]======");
     }
+    
+    private void initializeStudioSeats() {
+        for (int i = 1; i <= totalSeat; i++) {
+            studioSeats.add(i);
+        }
+    }
 
     @Override
     public void setStudioName(String studioName) {
-        this.StudioName = studioName;
+        this.studioName = studioName;
     }
 
     @Override
     public String getStudioName() {
-        return this.StudioName;
+        return this.studioName;
     }
 
     @Override
     public void setStudioCapacity(int seat) {
-        this.StudioSeat = seat;
+        this.totalSeat = seat;
     }
 
     @Override
     public int getStudioCapacity() {
-        return this.StudioSeat;
+        return this.totalSeat;
     }
 
     @Override
     public void setStudioPrice(int studioPrice) {
-        this.StudioPrice = studioPrice;
+        this.studioPrice = studioPrice;
     }
 
     @Override
     public int getStudioPrice() {
-        return this.StudioPrice;
+        return this.studioPrice;
     }
 
     public ArrayList<Integer> getSelectedSeats() {
@@ -75,6 +86,23 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         }
         // Tambahkan logika lain yang mungkin Anda perlukan setelah mengubah selectedSeats
         System.out.println("Selected Seats: " + selectedSeats);
+        updateSeatStatusLabel(); 
+    }
+    
+    private void updateSeatStatusLabel() {
+        // Membuat string untuk menampilkan status kursi
+        StringBuilder seatStatus = new StringBuilder("Seat Status: ");
+
+        for (int i = 1; i <= studioSeats.size(); i++) {
+            if (selectedSeats.contains(i)) {
+                seatStatus.append("[").append(i).append("] ");
+            } else {
+                seatStatus.append(i).append(" ");
+            }
+        }
+
+        // Menampilkan string status kursi
+        System.out.println(seatStatus.toString());
     }
 
     /**
