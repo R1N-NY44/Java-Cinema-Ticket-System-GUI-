@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class StudioA extends javax.swing.JPanel implements Studio{
 
-    private String StudioName;
+    private String StudioName = "StudioA";
     private int StudioSeat;
     private int StudioPrice;
     private ArrayList<Integer> selectedSeats = new ArrayList<>();
@@ -67,11 +67,11 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         if (selectedSeats.contains(seatNumber)) {
             // Kursi sudah dipilih, hapus dari selectedSeats dan ubah warna tombol
             selectedSeats.remove(Integer.valueOf(seatNumber));
-            seatButton.setBackground(new java.awt.Color(240, 240, 240));  // Warna default
+            seatButton.setBackground(new java.awt.Color(102,102,102));  // Warna default
         } else {
             // Kursi belum dipilih, tambahkan ke selectedSeats dan ubah warna tombol
             selectedSeats.add(seatNumber);
-            seatButton.setBackground(new java.awt.Color(102, 102, 102));  // Warna yang diinginkan
+            seatButton.setBackground(new java.awt.Color(176,147,106));  // Warna yang diinginkan
         }
         // Tambahkan logika lain yang mungkin Anda perlukan setelah mengubah selectedSeats
         System.out.println("Selected Seats: " + selectedSeats);
@@ -94,9 +94,25 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         jLabel2 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
-        beta1 = new javax.swing.JButton();
-        beta2 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        Seat1 = new javax.swing.JButton();
+        Seat2 = new javax.swing.JButton();
+        Seat3 = new javax.swing.JButton();
+        Seat4 = new javax.swing.JButton();
+        Seat5 = new javax.swing.JButton();
+        Seat6 = new javax.swing.JButton();
+        Seat7 = new javax.swing.JButton();
+        Seat8 = new javax.swing.JButton();
+        Seat9 = new javax.swing.JButton();
+        Seat10 = new javax.swing.JButton();
+        Seat11 = new javax.swing.JButton();
+        Seat12 = new javax.swing.JButton();
+        Seat13 = new javax.swing.JButton();
+        Seat14 = new javax.swing.JButton();
+        Seat15 = new javax.swing.JButton();
+        Seat16 = new javax.swing.JButton();
+        Seat17 = new javax.swing.JButton();
+        Seat18 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(40, 40, 40));
         setForeground(new java.awt.Color(102, 102, 102));
@@ -177,23 +193,268 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        beta1.setText("Test1");
-        beta1.addActionListener(new java.awt.event.ActionListener() {
+        jPanel4.setBackground(new java.awt.Color(40, 40, 40));
+
+        Seat1.setBackground(new java.awt.Color(153, 153, 153));
+        Seat1.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat1.setForeground(new java.awt.Color(51, 51, 51));
+        Seat1.setText("1");
+        Seat1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                beta1ActionPerformed(evt);
+                Seat1ActionPerformed(evt);
             }
         });
 
-        beta2.setText("Test2");
-        beta2.addActionListener(new java.awt.event.ActionListener() {
+        Seat2.setBackground(new java.awt.Color(153, 153, 153));
+        Seat2.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat2.setForeground(new java.awt.Color(51, 51, 51));
+        Seat2.setText("2");
+        Seat2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                beta2ActionPerformed(evt);
+                Seat2ActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Cormorant Infant Medium", 0, 22)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(204, 204, 204));
-        jButton2.setText("1");
+        Seat3.setBackground(new java.awt.Color(153, 153, 153));
+        Seat3.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat3.setForeground(new java.awt.Color(51, 51, 51));
+        Seat3.setText("3");
+        Seat3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat3ActionPerformed(evt);
+            }
+        });
+
+        Seat4.setBackground(new java.awt.Color(153, 153, 153));
+        Seat4.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat4.setForeground(new java.awt.Color(51, 51, 51));
+        Seat4.setText("4");
+        Seat4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat4ActionPerformed(evt);
+            }
+        });
+
+        Seat5.setBackground(new java.awt.Color(153, 153, 153));
+        Seat5.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat5.setForeground(new java.awt.Color(51, 51, 51));
+        Seat5.setText("5");
+        Seat5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat5ActionPerformed(evt);
+            }
+        });
+
+        Seat6.setBackground(new java.awt.Color(153, 153, 153));
+        Seat6.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat6.setForeground(new java.awt.Color(51, 51, 51));
+        Seat6.setText("6");
+        Seat6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat6ActionPerformed(evt);
+            }
+        });
+
+        Seat7.setBackground(new java.awt.Color(153, 153, 153));
+        Seat7.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat7.setForeground(new java.awt.Color(51, 51, 51));
+        Seat7.setText("7");
+        Seat7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat7ActionPerformed(evt);
+            }
+        });
+
+        Seat8.setBackground(new java.awt.Color(153, 153, 153));
+        Seat8.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat8.setForeground(new java.awt.Color(51, 51, 51));
+        Seat8.setText("8");
+        Seat8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat8ActionPerformed(evt);
+            }
+        });
+
+        Seat9.setBackground(new java.awt.Color(153, 153, 153));
+        Seat9.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat9.setForeground(new java.awt.Color(51, 51, 51));
+        Seat9.setText("9");
+        Seat9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat9ActionPerformed(evt);
+            }
+        });
+
+        Seat10.setBackground(new java.awt.Color(153, 153, 153));
+        Seat10.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat10.setForeground(new java.awt.Color(51, 51, 51));
+        Seat10.setText("10");
+        Seat10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat10ActionPerformed(evt);
+            }
+        });
+
+        Seat11.setBackground(new java.awt.Color(153, 153, 153));
+        Seat11.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat11.setForeground(new java.awt.Color(51, 51, 51));
+        Seat11.setText("11");
+        Seat11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat11ActionPerformed(evt);
+            }
+        });
+
+        Seat12.setBackground(new java.awt.Color(153, 153, 153));
+        Seat12.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat12.setForeground(new java.awt.Color(51, 51, 51));
+        Seat12.setText("12");
+        Seat12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat12ActionPerformed(evt);
+            }
+        });
+
+        Seat13.setBackground(new java.awt.Color(153, 153, 153));
+        Seat13.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat13.setForeground(new java.awt.Color(51, 51, 51));
+        Seat13.setText("13");
+        Seat13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat13ActionPerformed(evt);
+            }
+        });
+
+        Seat14.setBackground(new java.awt.Color(153, 153, 153));
+        Seat14.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat14.setForeground(new java.awt.Color(51, 51, 51));
+        Seat14.setText("9");
+        Seat14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat14ActionPerformed(evt);
+            }
+        });
+
+        Seat15.setBackground(new java.awt.Color(153, 153, 153));
+        Seat15.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat15.setForeground(new java.awt.Color(51, 51, 51));
+        Seat15.setText("10");
+        Seat15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat15ActionPerformed(evt);
+            }
+        });
+
+        Seat16.setBackground(new java.awt.Color(153, 153, 153));
+        Seat16.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat16.setForeground(new java.awt.Color(51, 51, 51));
+        Seat16.setText("11");
+        Seat16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat16ActionPerformed(evt);
+            }
+        });
+
+        Seat17.setBackground(new java.awt.Color(153, 153, 153));
+        Seat17.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat17.setForeground(new java.awt.Color(51, 51, 51));
+        Seat17.setText("12");
+        Seat17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat17ActionPerformed(evt);
+            }
+        });
+
+        Seat18.setBackground(new java.awt.Color(153, 153, 153));
+        Seat18.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Seat18.setForeground(new java.awt.Color(51, 51, 51));
+        Seat18.setText("13");
+        Seat18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seat18ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(Seat14, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(Seat15, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(Seat16, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(Seat17, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Seat18, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(Seat9, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(Seat10, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(Seat11, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(Seat12, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Seat13, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(Seat5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(Seat6, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(108, 108, 108)
+                                    .addComponent(Seat7, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(Seat8, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(Seat1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(Seat2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(108, 108, 108)
+                                    .addComponent(Seat3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(Seat4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Seat1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Seat5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Seat9, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat11, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat12, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat13, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Seat14, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat15, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat16, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat17, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seat18, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -202,23 +463,13 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             .addComponent(HeaderTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(beta2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(33, 33, 33)
-                        .addComponent(beta1)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(jButton2)))
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jSeparator3, jSeparator4});
@@ -234,15 +485,11 @@ public class StudioA extends javax.swing.JPanel implements Studio{
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addComponent(jButton2)
-                .addGap(183, 183, 183)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(beta1))
                 .addGap(18, 18, 18)
-                .addComponent(beta2)
-                .addContainerGap())
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jButton1)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     
@@ -254,26 +501,104 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void beta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beta1ActionPerformed
-        // TODO add your handling code here:
-        toggleSeat(1, beta1);
-    }//GEN-LAST:event_beta1ActionPerformed
+    private void Seat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat1ActionPerformed
+        toggleSeat(1, Seat1);
+    }//GEN-LAST:event_Seat1ActionPerformed
 
-    private void beta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beta2ActionPerformed
-        // TODO add your handling code here:
-        toggleSeat(2, beta2);   
-    }//GEN-LAST:event_beta2ActionPerformed
+    private void Seat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat2ActionPerformed
+        toggleSeat(2, Seat2);
+    }//GEN-LAST:event_Seat2ActionPerformed
+
+    private void Seat3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat3ActionPerformed
+        toggleSeat(3, Seat3);
+    }//GEN-LAST:event_Seat3ActionPerformed
+
+    private void Seat4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat4ActionPerformed
+        toggleSeat(4, Seat4);
+    }//GEN-LAST:event_Seat4ActionPerformed
+
+    private void Seat5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat5ActionPerformed
+        toggleSeat(5, Seat5);
+    }//GEN-LAST:event_Seat5ActionPerformed
+
+    private void Seat6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat6ActionPerformed
+        toggleSeat(6, Seat6);
+    }//GEN-LAST:event_Seat6ActionPerformed
+
+    private void Seat7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat7ActionPerformed
+        toggleSeat(7, Seat7);
+    }//GEN-LAST:event_Seat7ActionPerformed
+
+    private void Seat8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat8ActionPerformed
+        toggleSeat(8, Seat8);
+    }//GEN-LAST:event_Seat8ActionPerformed
+
+    private void Seat9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat9ActionPerformed
+        toggleSeat(9, Seat9);
+    }//GEN-LAST:event_Seat9ActionPerformed
+
+    private void Seat10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat10ActionPerformed
+        toggleSeat(10, Seat10);
+    }//GEN-LAST:event_Seat10ActionPerformed
+
+    private void Seat11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat11ActionPerformed
+        toggleSeat(11, Seat11);
+    }//GEN-LAST:event_Seat11ActionPerformed
+
+    private void Seat12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat12ActionPerformed
+        toggleSeat(12, Seat12);
+    }//GEN-LAST:event_Seat12ActionPerformed
+
+    private void Seat13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat13ActionPerformed
+        toggleSeat(13, Seat13);
+    }//GEN-LAST:event_Seat13ActionPerformed
+
+    private void Seat14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat14ActionPerformed
+        toggleSeat(14, Seat14);
+    }//GEN-LAST:event_Seat14ActionPerformed
+
+    private void Seat15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat15ActionPerformed
+        toggleSeat(15, Seat15);
+    }//GEN-LAST:event_Seat15ActionPerformed
+
+    private void Seat16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat16ActionPerformed
+        toggleSeat(16, Seat16);
+    }//GEN-LAST:event_Seat16ActionPerformed
+
+    private void Seat17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat17ActionPerformed
+        toggleSeat(17, Seat17);
+    }//GEN-LAST:event_Seat17ActionPerformed
+
+    private void Seat18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat18ActionPerformed
+        toggleSeat(19, Seat18);
+    }//GEN-LAST:event_Seat18ActionPerformed
     
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel HeaderTitle;
+    private javax.swing.JButton Seat1;
+    private javax.swing.JButton Seat10;
+    private javax.swing.JButton Seat11;
+    private javax.swing.JButton Seat12;
+    private javax.swing.JButton Seat13;
+    private javax.swing.JButton Seat14;
+    private javax.swing.JButton Seat15;
+    private javax.swing.JButton Seat16;
+    private javax.swing.JButton Seat17;
+    private javax.swing.JButton Seat18;
+    private javax.swing.JButton Seat2;
+    private javax.swing.JButton Seat3;
+    private javax.swing.JButton Seat4;
+    private javax.swing.JButton Seat5;
+    private javax.swing.JButton Seat6;
+    private javax.swing.JButton Seat7;
+    private javax.swing.JButton Seat8;
+    private javax.swing.JButton Seat9;
     private javax.swing.JLabel StudioTitle;
-    private javax.swing.JButton beta1;
-    private javax.swing.JButton beta2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
