@@ -6,6 +6,8 @@ package cinemaxxii.view.MovieDetail;
 
 import cinemaxxii.Database;
 import cinemaxxii.Movie;
+import cinemaxxii.Studio;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,16 +34,18 @@ public class MovieDetails extends javax.swing.JPanel {
 
     private final DisplayFrame displayFrame;
     private final Database k = new Database();
+    private int movieId;
     
     /**
      * Creates new form MovieDetails
      */
-    String timeDefault = "06.00";
+    // String timeDefault = "06.00";
     public MovieDetails(DisplayFrame displayFrame, int getId) {
         initComponents();
         this.displayFrame = displayFrame;
+        this.movieId = getId;
         
-        displayMovies(getId);
+        displayMovies(getId, "06.00");
         Time1.setForeground(new java.awt.Color(200, 152, 84));
     }
     
@@ -55,7 +59,7 @@ public class MovieDetails extends javax.swing.JPanel {
     }
     
     
-    public String displayMovies(int movieId) {
+    public Movie displayMovies(int movieId, String timeDefault) {
         try (Connection conn = k.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM film WHERE `MovieId` = ?;")) {
     
@@ -84,22 +88,16 @@ public class MovieDetails extends javax.swing.JPanel {
                     Movie movie = movies.get(0);
     
                     IMG_Banner.setIcon(new javax.swing.ImageIcon(new java.net.URL(movie.getBanner())));
-                    MovieTitle.setText(movie.getTitle()+"  ");
+                    MovieTitle.setText(movie.getTitle() + "  ");
                     Synopsis.setText(movie.getSynopsis());
-                    Director.setText(": "+movie.getDirector());
-                    Genre.setText(": "+movie.getGenre());
-                    Duration.setText(": "+movie.getDuration());
-//                    JPanel miniPanel = movie.get;
-                    
-//                    StudioPanel.removeAll();
-//                    StudioA Studio  = new StudioA(timeDefault);
-//                    StudioPanel.add(Studio);
-//                    StudioPanel.revalidate();
-//                    StudioPanel.repaint();
+                    Director.setText(": " + movie.getDirector());
+                    Genre.setText(": " + movie.getGenre());
+                    Duration.setText(": " + movie.getDuration());
+                    System.out.println(movie.getMovieId());
     
                     SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
                     SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMMM yyyy");
-                    
+    
                     try {
                         Date date = inputFormat.parse(movie.getShowDate());
                         String formattedDate = outputFormat.format(date);
@@ -108,15 +106,15 @@ public class MovieDetails extends javax.swing.JPanel {
                         e.printStackTrace();
                     }
     
-                    if (movie.getTheater().equals("A")) {
+                    if (movie.getTheater().equals("StudioA")) {
                         StudioPanel.removeAll();
-                        StudioA Studio  = new StudioA(timeDefault);
+                        StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), timeDefault);
                         StudioPanel.add(Studio);
                         StudioPanel.revalidate();
                         StudioPanel.repaint();
-                    } else if (movie.getTheater().equals("B")) {
+                    } else if (movie.getTheater().equals("StudioB")) {
                         StudioPanel.removeAll();
-                        StudioB Studio  = new StudioB();
+                        StudioB Studio = new StudioB();
                         StudioPanel.add(Studio);
                         StudioPanel.revalidate();
                         StudioPanel.repaint();
@@ -124,7 +122,8 @@ public class MovieDetails extends javax.swing.JPanel {
                         // Default jika tidak cocok dengan StudioA atau StudioB
                     }
     
-                    return movie.getTheater();
+                    //untuk melempar nilai theater keluar dari class
+                    return movie;
                 }
             }
     
@@ -134,6 +133,7 @@ public class MovieDetails extends javax.swing.JPanel {
     
         return null; // Return null jika tidak ada data atau terjadi kesalahan
     }
+    
     
 
 
@@ -529,22 +529,77 @@ public class MovieDetails extends javax.swing.JPanel {
         displayFrame.changeDisplayPanel(homePanel);
     }//GEN-LAST:event_backButtonActionPerformed
 
+
     private void Time1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Time1ActionPerformed
         // TODO add your handling code here:
         Time1.setForeground(new java.awt.Color(200, 152, 84));
-        Time2.setForeground(new java.awt.Color(204,204,204));
-        timeDefault = "06.00";
-        StudioPanel.revalidate();
-        StudioPanel.repaint();
+        Time2.setForeground(new java.awt.Color(204, 204, 204));
+        String setTime = "06.00";
+
+        // Memanggil metode displayMovies untuk mendapatkan nilai movie
+        Movie movie = displayMovies(movieId, setTime);
+        System.out.println("======[Adjust]======");
+        System.out.println("Studio Name : " + movie.getTheater() + ", Set Time : " + setTime);
+        System.out.println("======[Adjust]======");
+
+        // Mengecek apakah nilai movie tidak null
+        if (movie != null) {
+            // Membuat objek Studio sesuai dengan nilai theater
+            Studio studio;
+            if (movie.getTheater().equals("StudioA")) {
+                StudioPanel.removeAll();
+                StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), setTime);
+                StudioPanel.add(Studio);
+                StudioPanel.revalidate();
+                StudioPanel.repaint();
+            } else if (movie.getTheater().equals("StudioB")) {
+                studio = new StudioB();  // Gantilah timeDefault dengan nilai yang sesuai
+            } else {
+                // Jika tidak cocok dengan StudioA atau StudioB, Anda bisa memberikan nilai default atau menangani dengan cara lain
+                // studio = new StudioDefault();
+            }
+
+            // Menambahkan objek Studio ke StudioPanel
+
+        } else {
+            System.out.println("Tidak dapat menampilkan data film.");
+        }
     }//GEN-LAST:event_Time1ActionPerformed
 
     private void Time2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Time2ActionPerformed
         // TODO add your handling code here:
         Time1.setForeground(new java.awt.Color(204,204,204));
         Time2.setForeground(new java.awt.Color(200, 152, 84));
-        timeDefault = "18.00";
-        StudioPanel.revalidate();
-        StudioPanel.repaint();
+        String setTime = "18.00";
+
+        // Memanggil metode displayMovies untuk mendapatkan nilai movie
+        Movie movie = displayMovies(movieId, setTime);
+        System.out.println("======[Adjust]======");
+        System.out.println("Studio Name : " + movie.getTheater() + ", Set Time : " + setTime);
+        System.out.println("======[Adjust]======");
+
+        // Mengecek apakah nilai movie tidak null
+        if (movie != null) {
+            // Membuat objek Studio sesuai dengan nilai theater
+            Studio studio;
+            if (movie.getTheater().equals("StudioA")) {
+                StudioPanel.removeAll();
+                StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), setTime);
+                StudioPanel.add(Studio);
+                StudioPanel.revalidate();
+                StudioPanel.repaint();
+            } else if (movie.getTheater().equals("StudioB")) {
+                studio = new StudioB();  // Gantilah timeDefault dengan nilai yang sesuai
+            } else {
+                // Jika tidak cocok dengan StudioA atau StudioB, Anda bisa memberikan nilai default atau menangani dengan cara lain
+                // studio = new StudioDefault();
+            }
+
+            // Menambahkan objek Studio ke StudioPanel
+
+        } else {
+            System.out.println("Tidak dapat menampilkan data film.");
+        }
     }//GEN-LAST:event_Time2ActionPerformed
 
 

@@ -20,10 +20,13 @@ public class StudioA extends javax.swing.JPanel implements Studio{
     /**
      * Creates new form StudioA
      */
-    public StudioA(String time) {
+    public StudioA(int movieId,String movieTitle, String time) {
         initComponents();
         
-        System.out.println("current "+time);
+        StudioTitle.setText("Studio A ("+time+")"+movieId);
+        System.out.println("======[Studio A]======");
+        System.out.println("Time : "+time);
+        System.out.println("======[Studio A]======");
     }
 
     @Override
@@ -85,7 +88,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
 
         HeaderTitle = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
+        StudioTitle = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
@@ -108,10 +111,10 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         jSeparator5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(107, 92, 71), 2));
         jSeparator5.setPreferredSize(new java.awt.Dimension(3, 3));
 
-        jLabel1.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel1.setFont(new java.awt.Font("Castellar", 1, 32)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("Studio A");
+        StudioTitle.setBackground(new java.awt.Color(153, 153, 153));
+        StudioTitle.setFont(new java.awt.Font("Castellar", 1, 32)); // NOI18N
+        StudioTitle.setForeground(new java.awt.Color(204, 204, 204));
+        StudioTitle.setText("Studio A (06.00)");
 
         jSeparator2.setBackground(new java.awt.Color(107, 92, 71));
         jSeparator2.setForeground(new java.awt.Color(107, 92, 71));
@@ -125,9 +128,9 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             HeaderTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderTitleLayout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE)
+                .addComponent(StudioTitle)
+                .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(HeaderTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(HeaderTitleLayout.createSequentialGroup()
                     .addGap(0, 0, 0)
@@ -138,7 +141,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             HeaderTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderTitleLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(StudioTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(HeaderTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,21 +201,23 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(HeaderTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(123, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(beta2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(33, 33, 33)
                         .addComponent(beta1)))
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(jButton2)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -223,15 +228,15 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(HeaderTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(62, 62, 62)
                 .addComponent(jButton2)
-                .addGap(217, 217, 217)
+                .addGap(183, 183, 183)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(beta1))
@@ -263,11 +268,11 @@ public class StudioA extends javax.swing.JPanel implements Studio{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel HeaderTitle;
+    private javax.swing.JLabel StudioTitle;
     private javax.swing.JButton beta1;
     private javax.swing.JButton beta2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
