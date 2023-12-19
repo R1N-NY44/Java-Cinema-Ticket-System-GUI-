@@ -24,7 +24,7 @@ public class Movie_db {
         ArrayList<Movie> movies = new ArrayList<>();
     
             Connection conn = c.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM film WHERE `Show Date` >= CURRENT_DATE;");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM movie WHERE `Show Date` >= CURRENT_DATE;");
             ResultSet rs = ps.executeQuery();
     
             while (rs.next()) {

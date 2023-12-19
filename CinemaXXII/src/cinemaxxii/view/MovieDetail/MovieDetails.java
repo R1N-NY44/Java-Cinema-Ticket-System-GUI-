@@ -61,7 +61,7 @@ public class MovieDetails extends javax.swing.JPanel {
     
     public Movie displayMovies(int movieId, String timeDefault) {
         try (Connection conn = k.getConnection();
-             PreparedStatement ps = conn.prepareStatement("SELECT * FROM film WHERE `MovieId` = ?;")) {
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM movie WHERE `MovieId` = ?;")) {
     
             ps.setInt(1, movieId);
     
@@ -108,7 +108,7 @@ public class MovieDetails extends javax.swing.JPanel {
     
                     if (movie.getTheater().equals("StudioA")) {
                         StudioPanel.removeAll();
-                        StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), timeDefault);
+                        StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), timeDefault, movie.getShowDate());
                         StudioPanel.add(Studio);
                         StudioPanel.revalidate();
                         StudioPanel.repaint();
@@ -548,7 +548,7 @@ public class MovieDetails extends javax.swing.JPanel {
             Studio studio;
             if (movie.getTheater().equals("StudioA")) {
                 StudioPanel.removeAll();
-                StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), setTime);
+                StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), setTime, movie.getShowDate());
                 StudioPanel.add(Studio);
                 StudioPanel.revalidate();
                 StudioPanel.repaint();
@@ -584,7 +584,7 @@ public class MovieDetails extends javax.swing.JPanel {
             Studio studio;
             if (movie.getTheater().equals("StudioA")) {
                 StudioPanel.removeAll();
-                StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), setTime);
+                StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), setTime, movie.getShowDate());
                 StudioPanel.add(Studio);
                 StudioPanel.revalidate();
                 StudioPanel.repaint();

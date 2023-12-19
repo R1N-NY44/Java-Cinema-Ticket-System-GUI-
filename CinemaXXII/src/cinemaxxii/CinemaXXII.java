@@ -43,7 +43,7 @@ public class CinemaXXII {
     
         public void displayMovies() {
             try (Connection conn = k.getConnection();
-                PreparedStatement ps = conn.prepareStatement("SELECT * FROM film WHERE `Director` LIKE '%-test%'");
+                PreparedStatement ps = conn.prepareStatement("SELECT * FROM movie WHERE `Director` LIKE '%-test%'");
                 ResultSet rs = ps.executeQuery()) {
 
                 ArrayList<Movie> movies = new ArrayList<>();

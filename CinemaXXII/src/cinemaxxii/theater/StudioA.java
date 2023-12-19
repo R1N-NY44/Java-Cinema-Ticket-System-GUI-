@@ -4,8 +4,16 @@
  */
 package cinemaxxii.theater;
 
+import cinemaxxii.Database;
 import cinemaxxii.Studio;
+import com.sun.jdi.connect.spi.Connection;
+//import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.swing.JButton;
 
 /**
  *
@@ -13,22 +21,131 @@ import java.util.ArrayList;
  */
 public class StudioA extends javax.swing.JPanel implements Studio{
 
+    private final Database c = new Database();
     private String StudioName = "StudioA";
-    private int StudioSeat;
-    private int StudioPrice;
+    private int StudioPrice = 12000;
+    private int StudioSeat = 18;
     private ArrayList<Integer> selectedSeats = new ArrayList<>();
+    private int movieId;
+    private String time;
+    private String date;
     /**
      * Creates new form StudioA
      */
-    public StudioA(int movieId,String movieTitle, String time) {
+    
+    public StudioA(int movieId, String movieTitle, String time, String date) {
         initComponents();
-        
-        StudioTitle.setText("Studio A ("+time+")"+movieId);
+
+        // Assign value to each variable
+        this.movieId = movieId;
+        this.time = time;
+        this.date = date;
+
+        // Initialize seat buttons
+        initializeSeatButtons();
+
+        // Set Studio Title
+        StudioTitle.setText("Studio A (" + time + ")");
+
+        // Print studio info
         System.out.println("======[Studio A]======");
-        System.out.println("Time : "+time);
+        System.out.println("Time: " + time);
         System.out.println("======[Studio A]======");
     }
 
+    //get current seat data from database
+    private ArrayList<Integer> getBookedSeatsFromDatabase() {
+        ArrayList<Integer> bookedSeats = new ArrayList<>();
+
+        try (var conn = c.getConnection();
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM seat WHERE `MovID` = ? AND `Time` = ? AND `ShowDate` = ?")) {
+
+            ps.setInt(1, movieId);
+            ps.setString(2, time);
+            ps.setString(3, date);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    int seatNumber = rs.getInt("SeatIndex");
+                    bookedSeats.add(seatNumber);
+                }
+            }
+
+        } catch (SQLException e) {
+            // Handle or log the exception appropriately
+            e.printStackTrace();
+        }
+
+        // Iterate over booked seats and update the corresponding buttons
+        bookedSeats.forEach(seat -> {
+            JButton seatButton = getSeatButton(seat);
+            if (seatButton != null) {
+                seatButton.setBackground(new java.awt.Color(51,51,51));
+                seatButton.setForeground(new java.awt.Color(152,152,152));
+            }
+        });
+
+        return bookedSeats;
+    }
+
+
+    //button event listener (action for each button)
+    private void initializeSeatButtons() {
+        ArrayList<Integer> bookedSeats = getBookedSeatsFromDatabase();
+
+        for (var i = 1; i <= getStudioCapacity(); i++) {
+            JButton seatButton = getSeatButton(i);
+            final int seatNumber = i;
+
+            seatButton.addActionListener(evt -> toggleSeat(seatNumber, seatButton, bookedSeats));
+        }
+    }
+    
+    //toggle Button handling (cuz checked button so sucks :v)
+    private void toggleSeat(int seatNumber, JButton seatButton, ArrayList<Integer> bookedSeats) {
+        if (selectedSeats.contains(seatNumber)) {
+            // Kursi sudah dipilih, hapus dari selectedSeats dan ubah warna tombol
+            selectedSeats.remove(Integer.valueOf(seatNumber));
+            seatButton.setBackground(new java.awt.Color(204,204,204));  // Warna default
+        } else if (bookedSeats.contains(seatNumber)) {
+            // Kursi sudah dipesan, tidak dapat dipilih
+            System.out.println("Seat " + seatNumber + " is already booked.");
+            // Tambahkan logika lain yang diperlukan jika kursi sudah dipesan
+        } else {
+            // Kursi belum dipilih dan belum dipesan, tambahkan ke selectedSeats dan ubah warna tombol
+            selectedSeats.add(seatNumber);
+            seatButton.setBackground(new java.awt.Color(176, 147, 106));  // Warna yang diinginkan
+        }
+        // Tambahkan logika lain yang mungkin Anda perlukan setelah mengubah selectedSeats
+        System.out.println("Selected Seats: " + selectedSeats);
+    }
+    
+    //give an return based on database record
+    private JButton getSeatButton(int seatName) {
+        switch (seatName) {
+            case 1: return Seat1;
+            case 2: return Seat2;
+            case 3: return Seat3;
+            case 4: return Seat4;
+            case 5: return Seat5;
+            case 6: return Seat6;
+            case 7: return Seat7;
+            case 8: return Seat8;
+            case 9: return Seat9;
+            case 10: return Seat10;
+            case 11: return Seat11;
+            case 12: return Seat12;
+            case 13: return Seat13;
+            case 14: return Seat14;
+            case 15: return Seat15;
+            case 16: return Seat16;
+            case 17: return Seat17;
+            case 18: return Seat18;
+            default: throw new IllegalArgumentException("Invalid seat number: " + seatName);
+        }
+    }
+
+    
     @Override
     public void setStudioName(String studioName) {
         this.StudioName = studioName;
@@ -59,23 +176,45 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         return this.StudioPrice;
     }
 
-    public ArrayList<Integer> getSelectedSeats() {
-        return selectedSeats;
-    }
-    
-    private void toggleSeat(int seatNumber, javax.swing.JButton seatButton) {
-        if (selectedSeats.contains(seatNumber)) {
-            // Kursi sudah dipilih, hapus dari selectedSeats dan ubah warna tombol
-            selectedSeats.remove(Integer.valueOf(seatNumber));
-            seatButton.setBackground(new java.awt.Color(102,102,102));  // Warna default
-        } else {
-            // Kursi belum dipilih, tambahkan ke selectedSeats dan ubah warna tombol
-            selectedSeats.add(seatNumber);
-            seatButton.setBackground(new java.awt.Color(176,147,106));  // Warna yang diinginkan
+    private void insertSelectedSeatsToDatabase() {
+        try (var conn = c.getConnection();
+             PreparedStatement ps = conn.prepareStatement("INSERT INTO seat (MovID, SeatIndex, Time, ShowDate) VALUES (?, ?, ?, ?)")) {
+
+            // Iterate over selected seats and insert them into the database
+            for (Integer seat : selectedSeats) {
+                ps.setInt(1, movieId);
+                ps.setInt(2, seat);
+                ps.setString(3, time);
+                ps.setString(4, date);
+                ps.addBatch();  // Add the batch for batch processing
+            }
+
+            // Execute the batch insert
+            ps.executeBatch();
+
+            System.out.println("Selected seats have been inserted into the database.");
+
+        } catch (SQLException e) {
+            // Handle or log the exception appropriately
+            e.printStackTrace();
         }
-        // Tambahkan logika lain yang mungkin Anda perlukan setelah mengubah selectedSeats
-        System.out.println("Selected Seats: " + selectedSeats);
     }
+
+    
+    
+//    private void toggleSeat(int seatNumber, javax.swing.JButton seatButton) {
+//        if (selectedSeats.contains(seatNumber)) {
+//            // Kursi sudah dipilih, hapus dari selectedSeats dan ubah warna tombol
+//            selectedSeats.remove(Integer.valueOf(seatNumber));
+//            seatButton.setBackground(new java.awt.Color(102,102,102));  // Warna default
+//        } else {
+//            // Kursi belum dipilih, tambahkan ke selectedSeats dan ubah warna tombol
+//            selectedSeats.add(seatNumber);
+//            seatButton.setBackground(new java.awt.Color(176,147,106));  // Warna yang diinginkan
+//        }
+//        // Tambahkan logika lain yang mungkin Anda perlukan setelah mengubah selectedSeats
+//        System.out.println("Selected Seats: " + selectedSeats);
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -186,7 +325,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         jSeparator3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 147, 106)));
         jSeparator3.setPreferredSize(new java.awt.Dimension(3, 2));
 
-        jButton1.setText("Print");
+        jButton1.setText("BetaSave");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -195,7 +334,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
 
         jPanel4.setBackground(new java.awt.Color(40, 40, 40));
 
-        Seat1.setBackground(new java.awt.Color(153, 153, 153));
+        Seat1.setBackground(new java.awt.Color(204, 204, 204));
         Seat1.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat1.setForeground(new java.awt.Color(51, 51, 51));
         Seat1.setText("1");
@@ -205,7 +344,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        Seat2.setBackground(new java.awt.Color(153, 153, 153));
+        Seat2.setBackground(new java.awt.Color(204, 204, 204));
         Seat2.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat2.setForeground(new java.awt.Color(51, 51, 51));
         Seat2.setText("2");
@@ -215,7 +354,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        Seat3.setBackground(new java.awt.Color(153, 153, 153));
+        Seat3.setBackground(new java.awt.Color(204, 204, 204));
         Seat3.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat3.setForeground(new java.awt.Color(51, 51, 51));
         Seat3.setText("3");
@@ -225,7 +364,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        Seat4.setBackground(new java.awt.Color(153, 153, 153));
+        Seat4.setBackground(new java.awt.Color(204, 204, 204));
         Seat4.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat4.setForeground(new java.awt.Color(51, 51, 51));
         Seat4.setText("4");
@@ -235,7 +374,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        Seat5.setBackground(new java.awt.Color(153, 153, 153));
+        Seat5.setBackground(new java.awt.Color(204, 204, 204));
         Seat5.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat5.setForeground(new java.awt.Color(51, 51, 51));
         Seat5.setText("5");
@@ -245,7 +384,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        Seat6.setBackground(new java.awt.Color(153, 153, 153));
+        Seat6.setBackground(new java.awt.Color(204, 204, 204));
         Seat6.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat6.setForeground(new java.awt.Color(51, 51, 51));
         Seat6.setText("6");
@@ -255,7 +394,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        Seat7.setBackground(new java.awt.Color(153, 153, 153));
+        Seat7.setBackground(new java.awt.Color(204, 204, 204));
         Seat7.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat7.setForeground(new java.awt.Color(51, 51, 51));
         Seat7.setText("7");
@@ -265,7 +404,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        Seat8.setBackground(new java.awt.Color(153, 153, 153));
+        Seat8.setBackground(new java.awt.Color(204, 204, 204));
         Seat8.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat8.setForeground(new java.awt.Color(51, 51, 51));
         Seat8.setText("8");
@@ -275,7 +414,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        Seat9.setBackground(new java.awt.Color(153, 153, 153));
+        Seat9.setBackground(new java.awt.Color(204, 204, 204));
         Seat9.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat9.setForeground(new java.awt.Color(51, 51, 51));
         Seat9.setText("9");
@@ -285,7 +424,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        Seat10.setBackground(new java.awt.Color(153, 153, 153));
+        Seat10.setBackground(new java.awt.Color(204, 204, 204));
         Seat10.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat10.setForeground(new java.awt.Color(51, 51, 51));
         Seat10.setText("10");
@@ -295,7 +434,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        Seat11.setBackground(new java.awt.Color(153, 153, 153));
+        Seat11.setBackground(new java.awt.Color(204, 204, 204));
         Seat11.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat11.setForeground(new java.awt.Color(51, 51, 51));
         Seat11.setText("11");
@@ -305,7 +444,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        Seat12.setBackground(new java.awt.Color(153, 153, 153));
+        Seat12.setBackground(new java.awt.Color(204, 204, 204));
         Seat12.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat12.setForeground(new java.awt.Color(51, 51, 51));
         Seat12.setText("12");
@@ -315,7 +454,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        Seat13.setBackground(new java.awt.Color(153, 153, 153));
+        Seat13.setBackground(new java.awt.Color(204, 204, 204));
         Seat13.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat13.setForeground(new java.awt.Color(51, 51, 51));
         Seat13.setText("13");
@@ -325,50 +464,50 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             }
         });
 
-        Seat14.setBackground(new java.awt.Color(153, 153, 153));
+        Seat14.setBackground(new java.awt.Color(204, 204, 204));
         Seat14.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat14.setForeground(new java.awt.Color(51, 51, 51));
-        Seat14.setText("9");
+        Seat14.setText("14");
         Seat14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Seat14ActionPerformed(evt);
             }
         });
 
-        Seat15.setBackground(new java.awt.Color(153, 153, 153));
+        Seat15.setBackground(new java.awt.Color(204, 204, 204));
         Seat15.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat15.setForeground(new java.awt.Color(51, 51, 51));
-        Seat15.setText("10");
+        Seat15.setText("15");
         Seat15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Seat15ActionPerformed(evt);
             }
         });
 
-        Seat16.setBackground(new java.awt.Color(153, 153, 153));
+        Seat16.setBackground(new java.awt.Color(204, 204, 204));
         Seat16.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat16.setForeground(new java.awt.Color(51, 51, 51));
-        Seat16.setText("11");
+        Seat16.setText("16");
         Seat16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Seat16ActionPerformed(evt);
             }
         });
 
-        Seat17.setBackground(new java.awt.Color(153, 153, 153));
+        Seat17.setBackground(new java.awt.Color(204, 204, 204));
         Seat17.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat17.setForeground(new java.awt.Color(51, 51, 51));
-        Seat17.setText("12");
+        Seat17.setText("17");
         Seat17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Seat17ActionPerformed(evt);
             }
         });
 
-        Seat18.setBackground(new java.awt.Color(153, 153, 153));
+        Seat18.setBackground(new java.awt.Color(204, 204, 204));
         Seat18.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
         Seat18.setForeground(new java.awt.Color(51, 51, 51));
-        Seat18.setText("13");
+        Seat18.setText("18");
         Seat18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Seat18ActionPerformed(evt);
@@ -499,78 +638,81 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         for (Integer seat : selectedSeats) {
                 System.out.println("Email, Kursi " + seat);
             }
+        // Insert selected seats into the database
+        insertSelectedSeatsToDatabase();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
     private void Seat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat1ActionPerformed
-        toggleSeat(1, Seat1);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat1ActionPerformed
 
     private void Seat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat2ActionPerformed
-        toggleSeat(2, Seat2);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat2ActionPerformed
 
     private void Seat3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat3ActionPerformed
-        toggleSeat(3, Seat3);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat3ActionPerformed
 
     private void Seat4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat4ActionPerformed
-        toggleSeat(4, Seat4);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat4ActionPerformed
 
     private void Seat5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat5ActionPerformed
-        toggleSeat(5, Seat5);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat5ActionPerformed
 
     private void Seat6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat6ActionPerformed
-        toggleSeat(6, Seat6);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat6ActionPerformed
 
     private void Seat7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat7ActionPerformed
-        toggleSeat(7, Seat7);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat7ActionPerformed
 
     private void Seat8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat8ActionPerformed
-        toggleSeat(8, Seat8);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat8ActionPerformed
 
     private void Seat9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat9ActionPerformed
-        toggleSeat(9, Seat9);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat9ActionPerformed
 
     private void Seat10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat10ActionPerformed
-        toggleSeat(10, Seat10);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat10ActionPerformed
 
     private void Seat11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat11ActionPerformed
-        toggleSeat(11, Seat11);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat11ActionPerformed
 
     private void Seat12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat12ActionPerformed
-        toggleSeat(12, Seat12);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat12ActionPerformed
 
     private void Seat13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat13ActionPerformed
-        toggleSeat(13, Seat13);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat13ActionPerformed
 
     private void Seat14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat14ActionPerformed
-        toggleSeat(14, Seat14);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat14ActionPerformed
 
     private void Seat15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat15ActionPerformed
-        toggleSeat(15, Seat15);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat15ActionPerformed
 
     private void Seat16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat16ActionPerformed
-        toggleSeat(16, Seat16);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat16ActionPerformed
 
     private void Seat17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat17ActionPerformed
-        toggleSeat(17, Seat17);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat17ActionPerformed
 
     private void Seat18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat18ActionPerformed
-        toggleSeat(19, Seat18);
+        //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat18ActionPerformed
     
 
