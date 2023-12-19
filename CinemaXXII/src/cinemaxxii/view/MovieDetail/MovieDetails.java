@@ -157,8 +157,9 @@ public class MovieDetails extends javax.swing.JPanel {
         IMG_Banner = new javax.swing.JLabel();
         MovieTitle = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        Synopsis = new javax.swing.JTextArea();
+        Description = new javax.swing.JPanel();
         jSeparator4 = new javax.swing.JSeparator();
+        Synopsis = new javax.swing.JTextArea();
         TicketPanel = new javax.swing.JPanel();
         TimePanel = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
@@ -167,6 +168,7 @@ public class MovieDetails extends javax.swing.JPanel {
         StudioPanel = new javax.swing.JPanel();
         Time1 = new javax.swing.JButton();
         Time2 = new javax.swing.JButton();
+        Time3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         Date = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
@@ -278,6 +280,14 @@ public class MovieDetails extends javax.swing.JPanel {
         jSeparator3.setMinimumSize(new java.awt.Dimension(50, 0));
         jSeparator3.setPreferredSize(new java.awt.Dimension(50, 3));
 
+        Description.setBackground(new java.awt.Color(43, 43, 43));
+
+        jSeparator4.setBackground(new java.awt.Color(107, 92, 71));
+        jSeparator4.setForeground(new java.awt.Color(107, 92, 71));
+        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 147, 106), 3));
+        jSeparator4.setPreferredSize(new java.awt.Dimension(50, 3));
+
         Synopsis.setEditable(false);
         Synopsis.setBackground(new java.awt.Color(43, 43, 43));
         Synopsis.setColumns(20);
@@ -289,11 +299,39 @@ public class MovieDetails extends javax.swing.JPanel {
         Synopsis.setWrapStyleWord(true);
         Synopsis.setBorder(null);
 
-        jSeparator4.setBackground(new java.awt.Color(107, 92, 71));
-        jSeparator4.setForeground(new java.awt.Color(107, 92, 71));
-        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 147, 106), 3));
-        jSeparator4.setPreferredSize(new java.awt.Dimension(50, 3));
+        javax.swing.GroupLayout DescriptionLayout = new javax.swing.GroupLayout(Description);
+        Description.setLayout(DescriptionLayout);
+        DescriptionLayout.setHorizontalGroup(
+            DescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 798, Short.MAX_VALUE)
+            .addGroup(DescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DescriptionLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Synopsis, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+            .addGroup(DescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DescriptionLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        DescriptionLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Synopsis, jSeparator4});
+
+        DescriptionLayout.setVerticalGroup(
+            DescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 422, Short.MAX_VALUE)
+            .addGroup(DescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DescriptionLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Synopsis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(24, Short.MAX_VALUE)))
+            .addGroup(DescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DescriptionLayout.createSequentialGroup()
+                    .addContainerGap(413, Short.MAX_VALUE)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
 
         TicketPanel.setBackground(new java.awt.Color(40, 40, 40));
         TicketPanel.setPreferredSize(new java.awt.Dimension(424, 800));
@@ -368,6 +406,16 @@ public class MovieDetails extends javax.swing.JPanel {
             }
         });
 
+        Time3.setBackground(new java.awt.Color(40, 40, 40));
+        Time3.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        Time3.setForeground(new java.awt.Color(204, 204, 204));
+        Time3.setText("09.00");
+        Time3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Time3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout TicketPanelLayout = new javax.swing.GroupLayout(TicketPanel);
         TicketPanel.setLayout(TicketPanelLayout);
         TicketPanelLayout.setHorizontalGroup(
@@ -379,11 +427,13 @@ public class MovieDetails extends javax.swing.JPanel {
                     .addComponent(TimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46))
             .addGroup(TicketPanelLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(58, 58, 58)
                 .addComponent(Time1)
-                .addGap(101, 101, 101)
+                .addGap(35, 35, 35)
+                .addComponent(Time3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Time2)
-                .addGap(86, 86, 86))
+                .addGap(84, 84, 84))
         );
 
         TicketPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {StudioPanel, TimePanel});
@@ -396,7 +446,8 @@ public class MovieDetails extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(TicketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Time1)
-                    .addComponent(Time2))
+                    .addComponent(Time2)
+                    .addComponent(Time3))
                 .addGap(58, 58, 58)
                 .addComponent(StudioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
@@ -448,15 +499,6 @@ public class MovieDetails extends javax.swing.JPanel {
                 .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Date)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(IMG_Banner, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MovieTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Synopsis, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel3)
                     .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,15 +509,22 @@ public class MovieDetails extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Director)
                             .addComponent(Genre)
-                            .addComponent(Duration))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Duration)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IMG_Banner, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(MovieTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(TicketPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {MovieTitle, jSeparator3});
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Synopsis, jSeparator4});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel3, jSeparator7});
 
@@ -492,34 +541,33 @@ public class MovieDetails extends javax.swing.JPanel {
                         .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(IMG_Banner, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addGap(0, 0, 0)
+                                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(Director))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(Genre))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(Duration)))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(MovieTitle)
                                 .addGap(0, 0, 0)
                                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Synopsis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(IMG_Banner, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, 0)
-                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(Director))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(Genre))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(Duration)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(TicketPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(159, 159, 159))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -602,9 +650,46 @@ public class MovieDetails extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_Time2ActionPerformed
 
+    private void Time3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Time3ActionPerformed
+        // TODO add your handling code here:
+        Time1.setForeground(new java.awt.Color(200, 152, 84));
+        Time2.setForeground(new java.awt.Color(204, 204, 204));
+        String setTime = "09.00";
+
+        // Memanggil metode displayMovies untuk mendapatkan nilai movie
+        Movie movie = displayMovies(movieId, setTime);
+        System.out.println("======[Adjust]======");
+        System.out.println("Studio Name : " + movie.getTheater() + ", Set Time : " + setTime);
+        System.out.println("======[Adjust]======");
+
+        // Mengecek apakah nilai movie tidak null
+        if (movie != null) {
+            // Membuat objek Studio sesuai dengan nilai theater
+            Studio studio;
+            if (movie.getTheater().equals("StudioA")) {
+                StudioPanel.removeAll();
+                StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), setTime, movie.getShowDate());
+                StudioPanel.add(Studio);
+                StudioPanel.revalidate();
+                StudioPanel.repaint();
+            } else if (movie.getTheater().equals("StudioB")) {
+                studio = new StudioB();  // Gantilah timeDefault dengan nilai yang sesuai
+            } else {
+                // Jika tidak cocok dengan StudioA atau StudioB, Anda bisa memberikan nilai default atau menangani dengan cara lain
+                // studio = new StudioDefault();
+            }
+
+            // Menambahkan objek Studio ke StudioPanel
+
+        } else {
+            System.out.println("Tidak dapat menampilkan data film.");
+        }
+    }//GEN-LAST:event_Time3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Date;
+    private javax.swing.JPanel Description;
     private javax.swing.JLabel Director;
     private javax.swing.JLabel Duration;
     private javax.swing.JLabel Genre;
@@ -617,6 +702,7 @@ public class MovieDetails extends javax.swing.JPanel {
     private javax.swing.JPanel TicketPanel;
     private javax.swing.JButton Time1;
     private javax.swing.JButton Time2;
+    private javax.swing.JButton Time3;
     private javax.swing.JPanel TimePanel;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;

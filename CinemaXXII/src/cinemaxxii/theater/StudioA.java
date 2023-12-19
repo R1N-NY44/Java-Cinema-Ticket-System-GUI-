@@ -6,14 +6,13 @@ package cinemaxxii.theater;
 
 import cinemaxxii.Database;
 import cinemaxxii.Studio;
-import com.sun.jdi.connect.spi.Connection;
-//import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 /**
  *
@@ -252,6 +251,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         Seat16 = new javax.swing.JButton();
         Seat17 = new javax.swing.JButton();
         Seat18 = new javax.swing.JButton();
+        Confirmation = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(40, 40, 40));
         setForeground(new java.awt.Color(102, 102, 102));
@@ -595,6 +595,14 @@ public class StudioA extends javax.swing.JPanel implements Studio{
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        Confirmation.setFont(new java.awt.Font("Castellar", 1, 24)); // NOI18N
+        Confirmation.setText("confirm");
+        Confirmation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -607,7 +615,8 @@ public class StudioA extends javax.swing.JPanel implements Studio{
                     .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(Confirmation))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -626,9 +635,11 @@ public class StudioA extends javax.swing.JPanel implements Studio{
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Confirmation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addComponent(jButton1)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     
@@ -714,10 +725,15 @@ public class StudioA extends javax.swing.JPanel implements Studio{
     private void Seat18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat18ActionPerformed
         //handling on initializeSeatButtons();
     }//GEN-LAST:event_Seat18ActionPerformed
+
+    private void ConfirmationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmationActionPerformed
+        
+    }//GEN-LAST:event_ConfirmationActionPerformed
     
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Confirmation;
     private javax.swing.JPanel HeaderTitle;
     private javax.swing.JButton Seat1;
     private javax.swing.JButton Seat10;
