@@ -8,7 +8,7 @@ import cinemaxxii.Movie;
 import cinemaxxii.Movie_db;
 import java.sql.SQLException;
 import cinemaxxii.display.DisplayFrame;
-import cinemaxxii.view.MovieDetail.MovieDetails;
+import cinemaxxii.view.Detail.MovieDetails;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;

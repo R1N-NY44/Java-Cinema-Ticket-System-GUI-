@@ -455,10 +455,12 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="TimePanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Time1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="Time2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="Time3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Time1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Time3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   <Component id="StudioPanel" min="-2" pref="572" max="-2" attributes="0"/>

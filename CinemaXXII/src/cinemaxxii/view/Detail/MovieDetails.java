@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package cinemaxxii.view.MovieDetail;
+package cinemaxxii.view.Detail;
 
 import cinemaxxii.Database;
 import cinemaxxii.Movie;
@@ -444,10 +444,11 @@ public class MovieDetails extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(TimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(TicketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Time1)
+                .addGroup(TicketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Time2)
-                    .addComponent(Time3))
+                    .addGroup(TicketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Time1)
+                        .addComponent(Time3)))
                 .addGap(58, 58, 58)
                 .addComponent(StudioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))

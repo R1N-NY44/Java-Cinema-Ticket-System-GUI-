@@ -6,10 +6,14 @@ package cinemaxxii.theater;
 
 import cinemaxxii.Database;
 import cinemaxxii.Studio;
+import cinemaxxii.view.Detail.CheckOutWindow;
+import cinemaxxii.view.Detail.CheckOutWindowBG;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import static java.awt.GraphicsDevice.WindowTranslucency.*;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -727,7 +731,21 @@ public class StudioA extends javax.swing.JPanel implements Studio{
     }//GEN-LAST:event_Seat18ActionPerformed
 
     private void ConfirmationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmationActionPerformed
+        //Checkout Window Manager
+        CheckOutWindowBG checkOutShow = new CheckOutWindowBG();
+        checkOutShow.dispose(); //idk what this used to
+        checkOutShow.setUndecorated(true); //make it more clear looks
+        checkOutShow.setOpacity(0.5f); //window opacity 
+        checkOutShow.setExtendedState(JFrame.MAXIMIZED_BOTH); //Full Screen
+        //checkOutShow.setAlwaysOnTop(true); //make the frame always on top
+        checkOutShow.setVisible(true); //make it visible
         
+        CheckOutWindow CheckOut = new CheckOutWindow();
+        CheckOut.dispose();
+        CheckOut.setUndecorated(true);
+        CheckOut.setAlwaysOnTop(true);
+        CheckOut.setLocationRelativeTo(null);
+        CheckOut.setVisible(true);
     }//GEN-LAST:event_ConfirmationActionPerformed
     
 
