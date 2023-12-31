@@ -108,7 +108,7 @@ public class MovieDetails extends javax.swing.JPanel {
     
                     if (movie.getTheater().equals("StudioA")) {
                         StudioPanel.removeAll();
-                        StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), timeDefault, movie.getShowDate());
+                        StudioA Studio = new StudioA(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), movieShowTime, movie.getShowDate());
                         StudioPanel.add(Studio);
                         StudioPanel.revalidate();
                         StudioPanel.repaint();
