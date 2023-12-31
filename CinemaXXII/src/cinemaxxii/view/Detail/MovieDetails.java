@@ -36,30 +36,46 @@ public class MovieDetails extends javax.swing.JPanel {
     private final Database k = new Database();
     private int movieId;
     
+    private String movieShowTime;
+
+    private String time1 = "09.00";
+    private String time2 = "12.00";
+    private String time3 = "18.00";
+    
     /**
      * Creates new form MovieDetails
      */
-    // String timeDefault = "06.00";
     public MovieDetails(DisplayFrame displayFrame, int getId) {
         initComponents();
+        
+        setTime1.setText(time1);
+        setTime2.setText(time2);
+        setTime3.setText(time3);
         this.displayFrame = displayFrame;
         this.movieId = getId;
         
-        displayMovies(getId, "06.00");
-        Time1.setForeground(new java.awt.Color(200, 152, 84));
-    }
-    
-    //Change The Mini Theater (Seat and etc)
-    public class MiniTheater {
-        private javax.swing.JPanel panel;
-
-        public MiniTheater(javax.swing.JPanel panel) {
-            this.panel = panel;
+        displayMovies(getId);
+        
+        if (movieShowTime.equals(time1)) {
+            setTime1.setForeground(new java.awt.Color(200, 152, 84));
+            setTime2.setForeground(new java.awt.Color(40,40,40));
+            setTime3.setForeground(new java.awt.Color(40,40,40));
+            setTime1.setEnabled(true);
+        } else if (movieShowTime.equals(time2)) {
+            setTime1.setForeground(new java.awt.Color(40,40,40));
+            setTime2.setForeground(new java.awt.Color(200, 152, 84));
+            setTime3.setForeground(new java.awt.Color(40,40,40));
+            setTime2.setEnabled(true);
+        } else if (movieShowTime.equals(time3)) {
+            setTime1.setForeground(new java.awt.Color(40,40,40));
+            setTime2.setForeground(new java.awt.Color(40,40,40));
+            setTime3.setForeground(new java.awt.Color(200, 152, 84));
+            setTime3.setEnabled(true);
         }
     }
     
     
-    public Movie displayMovies(int movieId, String timeDefault) {
+    public Movie displayMovies(int movieId) {
         try (Connection conn = k.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM movie WHERE `MovieId` = ?;")) {
     
@@ -79,7 +95,8 @@ public class MovieDetails extends javax.swing.JPanel {
                     String duration = rs.getString("Duration");
                     String showDate = rs.getString("Show Date");
                     String theater = rs.getString("Theater");
-    
+                    this.movieShowTime = rs.getString("Show Time");
+                    
                     Movie movie = new Movie(id, title, cover, banner, synopsis, genre, director, duration, showDate, theater);
                     movies.add(movie);
                 }
@@ -121,6 +138,8 @@ public class MovieDetails extends javax.swing.JPanel {
                     } else {
                         // Default jika tidak cocok dengan StudioA atau StudioB
                     }
+                    
+                    
     
                     //untuk melempar nilai theater keluar dari class
                     return movie;
@@ -166,9 +185,9 @@ public class MovieDetails extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         StudioPanel = new javax.swing.JPanel();
-        Time1 = new javax.swing.JButton();
-        Time2 = new javax.swing.JButton();
-        Time3 = new javax.swing.JButton();
+        setTime1 = new javax.swing.JButton();
+        setTime3 = new javax.swing.JButton();
+        setTime2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         Date = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
@@ -386,33 +405,33 @@ public class MovieDetails extends javax.swing.JPanel {
 
         StudioPanel.setLayout(new java.awt.BorderLayout());
 
-        Time1.setBackground(new java.awt.Color(40, 40, 40));
-        Time1.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
-        Time1.setForeground(new java.awt.Color(204, 204, 204));
-        Time1.setText("06.00");
-        Time1.addActionListener(new java.awt.event.ActionListener() {
+        setTime1.setBackground(new java.awt.Color(40, 40, 40));
+        setTime1.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        setTime1.setForeground(new java.awt.Color(204, 204, 204));
+        setTime1.setText("06.00");
+        setTime1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Time1ActionPerformed(evt);
+                setTime1ActionPerformed(evt);
             }
         });
 
-        Time2.setBackground(new java.awt.Color(40, 40, 40));
-        Time2.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
-        Time2.setForeground(new java.awt.Color(204, 204, 204));
-        Time2.setText("18.00");
-        Time2.addActionListener(new java.awt.event.ActionListener() {
+        setTime3.setBackground(new java.awt.Color(40, 40, 40));
+        setTime3.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        setTime3.setForeground(new java.awt.Color(204, 204, 204));
+        setTime3.setText("18.00");
+        setTime3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Time2ActionPerformed(evt);
+                setTime3ActionPerformed(evt);
             }
         });
 
-        Time3.setBackground(new java.awt.Color(40, 40, 40));
-        Time3.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
-        Time3.setForeground(new java.awt.Color(204, 204, 204));
-        Time3.setText("09.00");
-        Time3.addActionListener(new java.awt.event.ActionListener() {
+        setTime2.setBackground(new java.awt.Color(40, 40, 40));
+        setTime2.setFont(new java.awt.Font("Cormorant Infant Medium", 1, 24)); // NOI18N
+        setTime2.setForeground(new java.awt.Color(204, 204, 204));
+        setTime2.setText("09.00");
+        setTime2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Time3ActionPerformed(evt);
+                setTime2ActionPerformed(evt);
             }
         });
 
@@ -428,11 +447,11 @@ public class MovieDetails extends javax.swing.JPanel {
                 .addGap(46, 46, 46))
             .addGroup(TicketPanelLayout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addComponent(Time1)
+                .addComponent(setTime1)
                 .addGap(35, 35, 35)
-                .addComponent(Time3)
+                .addComponent(setTime2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Time2)
+                .addComponent(setTime3)
                 .addGap(84, 84, 84))
         );
 
@@ -445,10 +464,10 @@ public class MovieDetails extends javax.swing.JPanel {
                 .addComponent(TimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(TicketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Time2)
+                    .addComponent(setTime3)
                     .addGroup(TicketPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Time1)
-                        .addComponent(Time3)))
+                        .addComponent(setTime1)
+                        .addComponent(setTime2)))
                 .addGap(58, 58, 58)
                 .addComponent(StudioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
@@ -579,14 +598,15 @@ public class MovieDetails extends javax.swing.JPanel {
     }//GEN-LAST:event_backButtonActionPerformed
 
 
-    private void Time1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Time1ActionPerformed
+    private void setTime1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTime1ActionPerformed
         // TODO add your handling code here:
-        Time1.setForeground(new java.awt.Color(200, 152, 84));
-        Time2.setForeground(new java.awt.Color(204, 204, 204));
-        String setTime = "06.00";
+        setTime1.setForeground(new java.awt.Color(200, 152, 84));
+        setTime3.setForeground(new java.awt.Color(204, 204, 204));
+        setTime2.setForeground(new java.awt.Color(204, 204, 204));
+        String setTime = time1;
 
         // Memanggil metode displayMovies untuk mendapatkan nilai movie
-        Movie movie = displayMovies(movieId, setTime);
+        Movie movie = displayMovies(movieId);
         System.out.println("======[Adjust]======");
         System.out.println("Studio Name : " + movie.getTheater() + ", Set Time : " + setTime);
         System.out.println("======[Adjust]======");
@@ -597,7 +617,7 @@ public class MovieDetails extends javax.swing.JPanel {
             Studio studio;
             if (movie.getTheater().equals("StudioA")) {
                 StudioPanel.removeAll();
-                StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), setTime, movie.getShowDate());
+                StudioA Studio = new StudioA(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), movieShowTime, movie.getShowDate());
                 StudioPanel.add(Studio);
                 StudioPanel.revalidate();
                 StudioPanel.repaint();
@@ -613,16 +633,17 @@ public class MovieDetails extends javax.swing.JPanel {
         } else {
             System.out.println("Tidak dapat menampilkan data film.");
         }
-    }//GEN-LAST:event_Time1ActionPerformed
+    }//GEN-LAST:event_setTime1ActionPerformed
 
-    private void Time2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Time2ActionPerformed
+    private void setTime3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTime3ActionPerformed
         // TODO add your handling code here:
-        Time1.setForeground(new java.awt.Color(204,204,204));
-        Time2.setForeground(new java.awt.Color(200, 152, 84));
-        String setTime = "18.00";
+        setTime1.setForeground(new java.awt.Color(204, 204, 204));
+        setTime2.setForeground(new java.awt.Color(200, 152, 84));
+        setTime3.setForeground(new java.awt.Color(204, 204, 204));
+        String setTime = time3;
 
         // Memanggil metode displayMovies untuk mendapatkan nilai movie
-        Movie movie = displayMovies(movieId, setTime);
+        Movie movie = displayMovies(movieId);
         System.out.println("======[Adjust]======");
         System.out.println("Studio Name : " + movie.getTheater() + ", Set Time : " + setTime);
         System.out.println("======[Adjust]======");
@@ -633,7 +654,7 @@ public class MovieDetails extends javax.swing.JPanel {
             Studio studio;
             if (movie.getTheater().equals("StudioA")) {
                 StudioPanel.removeAll();
-                StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), setTime, movie.getShowDate());
+                StudioA Studio = new StudioA(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), movieShowTime, movie.getShowDate());
                 StudioPanel.add(Studio);
                 StudioPanel.revalidate();
                 StudioPanel.repaint();
@@ -649,16 +670,17 @@ public class MovieDetails extends javax.swing.JPanel {
         } else {
             System.out.println("Tidak dapat menampilkan data film.");
         }
-    }//GEN-LAST:event_Time2ActionPerformed
+    }//GEN-LAST:event_setTime3ActionPerformed
 
-    private void Time3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Time3ActionPerformed
+    private void setTime2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTime2ActionPerformed
         // TODO add your handling code here:
-        Time1.setForeground(new java.awt.Color(200, 152, 84));
-        Time2.setForeground(new java.awt.Color(204, 204, 204));
-        String setTime = "09.00";
+        setTime1.setForeground(new java.awt.Color(204, 204, 204));
+        setTime3.setForeground(new java.awt.Color(200, 152, 84));
+        setTime2.setForeground(new java.awt.Color(204, 204, 204));
+        String setTime = time2;
 
         // Memanggil metode displayMovies untuk mendapatkan nilai movie
-        Movie movie = displayMovies(movieId, setTime);
+        Movie movie = displayMovies(movieId);
         System.out.println("======[Adjust]======");
         System.out.println("Studio Name : " + movie.getTheater() + ", Set Time : " + setTime);
         System.out.println("======[Adjust]======");
@@ -669,7 +691,7 @@ public class MovieDetails extends javax.swing.JPanel {
             Studio studio;
             if (movie.getTheater().equals("StudioA")) {
                 StudioPanel.removeAll();
-                StudioA Studio = new StudioA(movie.getMovieId(), movie.getTitle(), setTime, movie.getShowDate());
+                StudioA Studio = new StudioA(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), movieShowTime, movie.getShowDate());
                 StudioPanel.add(Studio);
                 StudioPanel.revalidate();
                 StudioPanel.repaint();
@@ -685,7 +707,7 @@ public class MovieDetails extends javax.swing.JPanel {
         } else {
             System.out.println("Tidak dapat menampilkan data film.");
         }
-    }//GEN-LAST:event_Time3ActionPerformed
+    }//GEN-LAST:event_setTime2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -701,9 +723,6 @@ public class MovieDetails extends javax.swing.JPanel {
     private javax.swing.JPanel StudioPanel;
     private javax.swing.JTextArea Synopsis;
     private javax.swing.JPanel TicketPanel;
-    private javax.swing.JButton Time1;
-    private javax.swing.JButton Time2;
-    private javax.swing.JButton Time3;
     private javax.swing.JPanel TimePanel;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
@@ -720,5 +739,8 @@ public class MovieDetails extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JButton setTime1;
+    private javax.swing.JButton setTime2;
+    private javax.swing.JButton setTime3;
     // End of variables declaration//GEN-END:variables
 }
