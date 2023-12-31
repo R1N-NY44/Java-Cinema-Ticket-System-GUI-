@@ -6,6 +6,12 @@ package cinemaxxii.theater;
 
 import cinemaxxii.Database;
 import cinemaxxii.Studio;
+<<<<<<< Updated upstream
+=======
+import cinemaxxii.display.DisplayFrame;
+import cinemaxxii.view.Detail.CheckOutWindow;
+import cinemaxxii.view.Detail.CheckOutBackground;
+>>>>>>> Stashed changes
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,35 +26,45 @@ import javax.swing.JFrame;
  */
 public class StudioA extends javax.swing.JPanel implements Studio{
 
+    private final DisplayFrame displayFrame;
+    
     private final Database c = new Database();
     private String StudioName = "StudioA";
     private int StudioPrice = 12000;
     private int StudioSeat = 18;
+    //private int ;
+    private String movieId, title, theather, showTime, showDate;
+    
+    
     private ArrayList<Integer> selectedSeats = new ArrayList<>();
-    private int movieId;
-    private String time;
-    private String date;
     /**
      * Creates new form StudioA
      */
     
-    public StudioA(int movieId, String movieTitle, String time, String date) {
+    public StudioA(DisplayFrame displayFrame, String movieId, String movieTitle, String theather, String showtime, String showdate) {
         initComponents();
 
         // Assign value to each variable
+        this.displayFrame = displayFrame;
         this.movieId = movieId;
-        this.time = time;
-        this.date = date;
+        this.title = movieTitle;
+        this.theather = theather;
+        this.showTime = showtime;
+        this.showDate = showdate;
 
         // Initialize seat buttons
         initializeSeatButtons();
 
         // Set Studio Title
-        StudioTitle.setText("Studio A (" + time + ")");
+        StudioTitle.setText("Studio A (" + showTime + ")");
 
         // Print studio info
         System.out.println("======[Studio A]======");
-        System.out.println("Time: " + time);
+        System.out.println("Mov ID: " + movieId);
+        System.out.println("Title: " + title);
+        System.out.println("Theather : " + theather);
+        System.out.println("Show Date: " + showDate);
+        System.out.println("Show Time: " + showTime);
         System.out.println("======[Studio A]======");
     }
 
@@ -59,9 +75,9 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         try (var conn = c.getConnection();
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM seat WHERE `MovID` = ? AND `Time` = ? AND `ShowDate` = ?")) {
 
-            ps.setInt(1, movieId);
-            ps.setString(2, time);
-            ps.setString(3, date);
+            ps.setString(1, movieId);
+            ps.setString(2, showTime);
+            ps.setString(3, showDate);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -106,6 +122,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             // Kursi sudah dipilih, hapus dari selectedSeats dan ubah warna tombol
             selectedSeats.remove(Integer.valueOf(seatNumber));
             seatButton.setBackground(new java.awt.Color(204,204,204));  // Warna default
+            toggleConfirm();
         } else if (bookedSeats.contains(seatNumber)) {
             // Kursi sudah dipesan, tidak dapat dipilih
             System.out.println("Seat " + seatNumber + " is already booked.");
@@ -114,9 +131,20 @@ public class StudioA extends javax.swing.JPanel implements Studio{
             // Kursi belum dipilih dan belum dipesan, tambahkan ke selectedSeats dan ubah warna tombol
             selectedSeats.add(seatNumber);
             seatButton.setBackground(new java.awt.Color(176, 147, 106));  // Warna yang diinginkan
+            toggleConfirm();
         }
         // Tambahkan logika lain yang mungkin Anda perlukan setelah mengubah selectedSeats
         System.out.println("Selected Seats: " + selectedSeats);
+    }
+    
+    private void toggleConfirm(){
+        if (selectedSeats.size() > 0){
+            Confirmation.setBackground(new java.awt.Color(176,147,106));
+            Confirmation.setForeground(new java.awt.Color(255,255,255));
+        } else {
+            Confirmation.setBackground(new java.awt.Color(21,21,21));
+            Confirmation.setForeground(new java.awt.Color(204,204,204));
+        }
     }
     
     //give an return based on database record
@@ -181,10 +209,10 @@ public class StudioA extends javax.swing.JPanel implements Studio{
 
             // Iterate over selected seats and insert them into the database
             for (Integer seat : selectedSeats) {
-                ps.setInt(1, movieId);
+                ps.setString(1, movieId);
                 ps.setInt(2, seat);
-                ps.setString(3, time);
-                ps.setString(4, date);
+                ps.setString(3, showTime);
+                ps.setString(4, showDate);
                 ps.addBatch();  // Add the batch for batch processing
             }
 
@@ -595,7 +623,9 @@ public class StudioA extends javax.swing.JPanel implements Studio{
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        Confirmation.setBackground(new java.awt.Color(21, 21, 21));
         Confirmation.setFont(new java.awt.Font("Castellar", 1, 24)); // NOI18N
+        Confirmation.setForeground(new java.awt.Color(204, 204, 204));
         Confirmation.setText("confirm");
         Confirmation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -727,7 +757,18 @@ public class StudioA extends javax.swing.JPanel implements Studio{
     }//GEN-LAST:event_Seat18ActionPerformed
 
     private void ConfirmationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmationActionPerformed
+<<<<<<< Updated upstream
         
+=======
+        if (selectedSeats.size() > 0){
+            CheckOutWindow CheckOut = new CheckOutWindow(displayFrame, movieId, title, theather, showTime, showDate, selectedSeats, StudioPrice);
+            CheckOut.dispose();
+            CheckOut.setUndecorated(true);
+            CheckOut.setAlwaysOnTop(true);
+            CheckOut.setLocationRelativeTo(null);
+            CheckOut.setVisible(true);
+        }
+>>>>>>> Stashed changes
     }//GEN-LAST:event_ConfirmationActionPerformed
     
 
