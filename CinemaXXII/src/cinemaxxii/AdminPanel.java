@@ -497,8 +497,8 @@ public class AdminPanel extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(movieTable);
         if (movieTable.getColumnModel().getColumnCount() > 0) {
-            movieTable.getColumnModel().getColumn(0).setMinWidth(25);
-            movieTable.getColumnModel().getColumn(0).setMaxWidth(25);
+            movieTable.getColumnModel().getColumn(0).setMinWidth(30);
+            movieTable.getColumnModel().getColumn(0).setMaxWidth(30);
             movieTable.getColumnModel().getColumn(1).setMinWidth(170);
             movieTable.getColumnModel().getColumn(1).setMaxWidth(170);
             movieTable.getColumnModel().getColumn(2).setMinWidth(160);
