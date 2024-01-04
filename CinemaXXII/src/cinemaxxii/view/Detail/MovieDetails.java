@@ -131,7 +131,7 @@ public class MovieDetails extends javax.swing.JPanel {
                         StudioPanel.repaint();
                     } else if (movie.getTheater().equals("StudioB")) {
                         StudioPanel.removeAll();
-                        StudioB Studio = new StudioB();
+                        StudioB Studio = new StudioB(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), movieShowTime, movie.getShowDate());
                         StudioPanel.add(Studio);
                         StudioPanel.revalidate();
                         StudioPanel.repaint();
@@ -617,12 +617,16 @@ public class MovieDetails extends javax.swing.JPanel {
             Studio studio;
             if (movie.getTheater().equals("StudioA")) {
                 StudioPanel.removeAll();
-                StudioA Studio = new StudioA(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), movieShowTime, movie.getShowDate());
+                StudioA Studio = new StudioA(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), setTime, movie.getShowDate());
                 StudioPanel.add(Studio);
                 StudioPanel.revalidate();
                 StudioPanel.repaint();
             } else if (movie.getTheater().equals("StudioB")) {
-                studio = new StudioB();  // Gantilah timeDefault dengan nilai yang sesuai
+                StudioPanel.removeAll();
+                StudioB Studio = new StudioB(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), setTime, movie.getShowDate());
+                StudioPanel.add(Studio);
+                StudioPanel.revalidate();
+                StudioPanel.repaint();
             } else {
                 // Jika tidak cocok dengan StudioA atau StudioB, Anda bisa memberikan nilai default atau menangani dengan cara lain
                 // studio = new StudioDefault();
@@ -638,8 +642,8 @@ public class MovieDetails extends javax.swing.JPanel {
     private void setTime3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTime3ActionPerformed
         // TODO add your handling code here:
         setTime1.setForeground(new java.awt.Color(204, 204, 204));
-        setTime2.setForeground(new java.awt.Color(200, 152, 84));
-        setTime3.setForeground(new java.awt.Color(204, 204, 204));
+        setTime3.setForeground(new java.awt.Color(200, 152, 84));
+        setTime2.setForeground(new java.awt.Color(204, 204, 204));
         String setTime = time3;
 
         // Memanggil metode displayMovies untuk mendapatkan nilai movie
@@ -654,12 +658,16 @@ public class MovieDetails extends javax.swing.JPanel {
             Studio studio;
             if (movie.getTheater().equals("StudioA")) {
                 StudioPanel.removeAll();
-                StudioA Studio = new StudioA(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), movieShowTime, movie.getShowDate());
+                StudioA Studio = new StudioA(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), setTime, movie.getShowDate());
                 StudioPanel.add(Studio);
                 StudioPanel.revalidate();
                 StudioPanel.repaint();
             } else if (movie.getTheater().equals("StudioB")) {
-                studio = new StudioB();  // Gantilah timeDefault dengan nilai yang sesuai
+                StudioPanel.removeAll();
+                StudioB Studio = new StudioB(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), setTime, movie.getShowDate());
+                StudioPanel.add(Studio);
+                StudioPanel.revalidate();
+                StudioPanel.repaint();
             } else {
                 // Jika tidak cocok dengan StudioA atau StudioB, Anda bisa memberikan nilai default atau menangani dengan cara lain
                 // studio = new StudioDefault();
@@ -675,8 +683,8 @@ public class MovieDetails extends javax.swing.JPanel {
     private void setTime2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTime2ActionPerformed
         // TODO add your handling code here:
         setTime1.setForeground(new java.awt.Color(204, 204, 204));
-        setTime3.setForeground(new java.awt.Color(200, 152, 84));
-        setTime2.setForeground(new java.awt.Color(204, 204, 204));
+        setTime2.setForeground(new java.awt.Color(200, 152, 84));
+        setTime3.setForeground(new java.awt.Color(204, 204, 204));
         String setTime = time2;
 
         // Memanggil metode displayMovies untuk mendapatkan nilai movie
@@ -691,12 +699,16 @@ public class MovieDetails extends javax.swing.JPanel {
             Studio studio;
             if (movie.getTheater().equals("StudioA")) {
                 StudioPanel.removeAll();
-                StudioA Studio = new StudioA(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), movieShowTime, movie.getShowDate());
+                StudioA Studio = new StudioA(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), setTime, movie.getShowDate());
                 StudioPanel.add(Studio);
                 StudioPanel.revalidate();
                 StudioPanel.repaint();
             } else if (movie.getTheater().equals("StudioB")) {
-                studio = new StudioB();  // Gantilah timeDefault dengan nilai yang sesuai
+                StudioPanel.removeAll();
+                StudioB Studio = new StudioB(displayFrame,String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getTheater(), setTime, movie.getShowDate());
+                StudioPanel.add(Studio);
+                StudioPanel.revalidate();
+                StudioPanel.repaint();
             } else {
                 // Jika tidak cocok dengan StudioA atau StudioB, Anda bisa memberikan nilai default atau menangani dengan cara lain
                 // studio = new StudioDefault();

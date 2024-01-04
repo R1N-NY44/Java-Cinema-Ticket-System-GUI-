@@ -27,7 +27,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
     
     private final Database c = new Database();
     private String StudioName = "StudioA";
-    private int StudioPrice = 12000;
+    private int StudioPrice = 32000;
     private int StudioSeat = 18;
     //private int ;
     private String movieId, title, theather, showTime, showDate;
@@ -200,6 +200,7 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         return this.StudioPrice;
     }
 
+    //method to add to seat table (beta test)
     private void insertSelectedSeatsToDatabase() {
         try (var conn = c.getConnection();
              PreparedStatement ps = conn.prepareStatement("INSERT INTO seat (MovID, SeatIndex, Time, ShowDate) VALUES (?, ?, ?, ?)")) {
@@ -256,7 +257,6 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         jSeparator4 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         Seat1 = new javax.swing.JButton();
         Seat2 = new javax.swing.JButton();
@@ -349,13 +349,6 @@ public class StudioA extends javax.swing.JPanel implements Studio{
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 147, 106)));
         jSeparator3.setPreferredSize(new java.awt.Dimension(3, 2));
-
-        jButton1.setText("BetaSave");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jPanel4.setBackground(new java.awt.Color(40, 40, 40));
 
@@ -642,7 +635,6 @@ public class StudioA extends javax.swing.JPanel implements Studio{
                     .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                    .addComponent(jButton1)
                     .addComponent(Confirmation))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -662,23 +654,12 @@ public class StudioA extends javax.swing.JPanel implements Studio{
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(Confirmation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jButton1)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        for (Integer seat : selectedSeats) {
-                System.out.println("Email, Kursi " + seat);
-            }
-        // Insert selected seats into the database
-        insertSelectedSeatsToDatabase();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     private void Seat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seat1ActionPerformed
@@ -789,7 +770,6 @@ public class StudioA extends javax.swing.JPanel implements Studio{
     private javax.swing.JButton Seat8;
     private javax.swing.JButton Seat9;
     private javax.swing.JLabel StudioTitle;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator2;
