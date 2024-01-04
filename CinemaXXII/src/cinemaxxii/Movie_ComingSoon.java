@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Yoga
  */
-public class Movie_db {
+public class Movie_ComingSoon {
     
     // private Connection conn;
     private final Database c = new Database();
@@ -24,7 +24,7 @@ public class Movie_db {
         ArrayList<Movie> movies = new ArrayList<>();
     
             Connection conn = c.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM movie WHERE `Show Date` = CURRENT_DATE;");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM movie WHERE `Show Date` > CURRENT_DATE;");
             ResultSet rs = ps.executeQuery();
     
             while (rs.next()) {
