@@ -497,8 +497,8 @@ public class AdminPanel extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(movieTable);
         if (movieTable.getColumnModel().getColumnCount() > 0) {
-            movieTable.getColumnModel().getColumn(0).setMinWidth(25);
-            movieTable.getColumnModel().getColumn(0).setMaxWidth(25);
+            movieTable.getColumnModel().getColumn(0).setMinWidth(30);
+            movieTable.getColumnModel().getColumn(0).setMaxWidth(30);
             movieTable.getColumnModel().getColumn(1).setMinWidth(170);
             movieTable.getColumnModel().getColumn(1).setMaxWidth(170);
             movieTable.getColumnModel().getColumn(2).setMinWidth(160);
@@ -786,12 +786,13 @@ public class AdminPanel extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(inputCoverLink, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(searchButton)
-                    .addComponent(refresh)
-                    .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel4)
+                        .addComponent(searchButton)
+                        .addComponent(refresh)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)

@@ -33,7 +33,7 @@ public class CinemaXXII {
         
         DisplayFrame display = new DisplayFrame();
         display.dispose();
-        //display.setUndecorated(true);
+        display.setUndecorated(true);
         display.setVisible(true);
         
         //inputData displayInput = new inputData();

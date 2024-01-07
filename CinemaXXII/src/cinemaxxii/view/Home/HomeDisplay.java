@@ -145,7 +145,7 @@ public class HomeDisplay extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         DisplayFrame.removeAll();
-        ComingSoon comingMovie = new ComingSoon();
+        ComingSoon comingMovie = new ComingSoon(displayFrame);
         DisplayFrame.add(comingMovie);
         DisplayFrame.repaint();
         DisplayFrame.revalidate();

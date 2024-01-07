@@ -4,19 +4,103 @@
  */
 package cinemaxxii.view.Home;
 
+import cinemaxxii.Movie;
+import cinemaxxii.Movie_ComingSoon;
+import java.sql.SQLException;
+import cinemaxxii.display.DisplayFrame;
+import cinemaxxii.view.Detail.MovieDetails;
+import java.util.ArrayList;
+import javax.swing.JPanel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Yoga
  */
 public class ComingSoon extends javax.swing.JPanel {
 
+    
     /**
-     * Creates new form ComingSoon
+     * Creates new form HomePage
+     * jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Asset/Kuro Neko.png")));  
      */
-    public ComingSoon() {
+    private final DisplayFrame displayFrame;
+    public ComingSoon(DisplayFrame displayFrame) {
         initComponents();
+        this.displayFrame = displayFrame;
+        displayMovies();
+        
+//        String url1 = "https://cdn.discordapp.com/attachments/1025234293976481803/1185280983482769529/YourName.jpg";
+//        String url2 = "https://cdn.discordapp.com/attachments/1025234293976481803/1185306535308578856/The_Garden_of_Words.jpg";
+//        String url3 = "https://cdn.discordapp.com/attachments/1025234293976481803/1185299490027086066/Suzume_no_Tojimari.jpg";
+//        
+//        try {
+//            bannerIMG.setIcon(new javax.swing.ImageIcon(new java.net.URL(url1)));
+//            bannerIMG.setName("");
+//            
+//            bannerIMG2.setIcon(new javax.swing.ImageIcon(new java.net.URL(url2)));
+//            bannerIMG2.setName("");
+//            
+//            bannerIMG3.setIcon(new javax.swing.ImageIcon(new java.net.URL(url3)));
+//            bannerIMG3.setName("");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
+    
+        private Movie_ComingSoon conn = new Movie_ComingSoon();
+        private void displayMovies() {
 
+            try {
+                ArrayList<Movie> movies = conn.dbMovies();
+
+                int count = 0;
+
+                for (Movie movie : movies) {
+                    // Menentukan foto berdasarkan nomor urutan atau kondisi tertentu
+                    if (count == 0) {
+                        String url2 = movie.getCover();
+                        String title2 = movie.getTitle();
+                        
+                        try {
+                        bannerIMG2.setIcon(new javax.swing.ImageIcon(new java.net.URL(url2)));
+                        Title1.setText(title2);
+                        buyButton2.setEnabled(true);                        
+                        }catch (java.net.MalformedURLException e) {
+                            // Handle the exception
+                        }
+                    } else if (count == 1) {
+                        String url1 = movie.getCover();
+                        String title = movie.getTitle();
+                        
+                        try {
+                        bannerIMG.setIcon(new javax.swing.ImageIcon(new java.net.URL(url1)));
+                        Title.setText(title);
+                        buyButton.setEnabled(true);
+                        }catch (java.net.MalformedURLException e) {
+                            // Handle the exception
+                        }
+                    } else if (count == 2) {
+                        String url3 = movie.getCover();
+                        String title3 = movie.getTitle();
+                        
+                        try {
+                        bannerIMG3.setIcon(new javax.swing.ImageIcon(new java.net.URL(url3)));
+                        Title2.setText(title3);
+                        buyButton3.setEnabled(true);
+                        }catch (java.net.MalformedURLException e) {
+                            // Handle the exception
+                        }
+                    }
+                    count++;
+                }
+            }catch (SQLException ex){
+                System.out.println("Eksepsi: "+ ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Exception: "+ ex.getMessage());
+            }
+    }
+        
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,16 +110,237 @@ public class ComingSoon extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Banner = new javax.swing.JPanel();
+        HeaderBanner = new javax.swing.JPanel();
+        Title = new javax.swing.JLabel();
+        bannerIMG = new javax.swing.JLabel();
+        buyButton = new javax.swing.JButton();
+        Banner4 = new javax.swing.JPanel();
+        HeaderBanner4 = new javax.swing.JPanel();
+        Title1 = new javax.swing.JLabel();
+        bannerIMG2 = new javax.swing.JLabel();
+        buyButton2 = new javax.swing.JButton();
+        Banner5 = new javax.swing.JPanel();
+        HeaderBanner5 = new javax.swing.JPanel();
+        Title2 = new javax.swing.JLabel();
+        bannerIMG3 = new javax.swing.JLabel();
+        buyButton3 = new javax.swing.JButton();
         HeaderTitle = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
         HTitle = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(43, 43, 43));
-        setMinimumSize(new java.awt.Dimension(1920, 1080));
+        setToolTipText("");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1920, 1080));
+        setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(1920, 1080));
 
+        Banner.setBackground(new java.awt.Color(51, 51, 51));
+        Banner.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(107, 92, 71), 4, true));
+        Banner.setForeground(new java.awt.Color(255, 255, 255));
+
+        HeaderBanner.setBackground(new java.awt.Color(107, 92, 71));
+
+        Title.setFont(new java.awt.Font("Cormorant Infant SemiBold", 0, 48)); // NOI18N
+        Title.setForeground(new java.awt.Color(255, 255, 255));
+        Title.setText("=====[No Movie]=====");
+
+        javax.swing.GroupLayout HeaderBannerLayout = new javax.swing.GroupLayout(HeaderBanner);
+        HeaderBanner.setLayout(HeaderBannerLayout);
+        HeaderBannerLayout.setHorizontalGroup(
+            HeaderBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HeaderBannerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Title)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        HeaderBannerLayout.setVerticalGroup(
+            HeaderBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HeaderBannerLayout.createSequentialGroup()
+                .addComponent(Title)
+                .addGap(0, 0, 0))
+        );
+
+        bannerIMG.setBackground(new java.awt.Color(204, 204, 204));
+        bannerIMG.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bannerIMG.setToolTipText("");
+        bannerIMG.setName(""); // NOI18N
+
+        buyButton.setBackground(new java.awt.Color(176, 147, 106));
+        buyButton.setFont(new java.awt.Font("Castellar", 1, 26)); // NOI18N
+        buyButton.setForeground(new java.awt.Color(255, 255, 255));
+        buyButton.setText("Buy Ticket");
+        buyButton.setEnabled(false);
+        buyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout BannerLayout = new javax.swing.GroupLayout(Banner);
+        Banner.setLayout(BannerLayout);
+        BannerLayout.setHorizontalGroup(
+            BannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BannerLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(buyButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(HeaderBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BannerLayout.createSequentialGroup()
+                .addContainerGap(105, Short.MAX_VALUE)
+                .addComponent(bannerIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(106, Short.MAX_VALUE))
+        );
+        BannerLayout.setVerticalGroup(
+            BannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BannerLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(HeaderBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bannerIMG, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buyButton)
+                .addContainerGap())
+        );
+
+        Banner4.setBackground(new java.awt.Color(51, 51, 51));
+        Banner4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(107, 92, 71), 4, true));
+        Banner4.setForeground(new java.awt.Color(255, 255, 255));
+
+        HeaderBanner4.setBackground(new java.awt.Color(107, 92, 71));
+
+        Title1.setFont(new java.awt.Font("Cormorant Infant SemiBold", 0, 48)); // NOI18N
+        Title1.setForeground(new java.awt.Color(255, 255, 255));
+        Title1.setText("=====[No Movie]=====");
+
+        javax.swing.GroupLayout HeaderBanner4Layout = new javax.swing.GroupLayout(HeaderBanner4);
+        HeaderBanner4.setLayout(HeaderBanner4Layout);
+        HeaderBanner4Layout.setHorizontalGroup(
+            HeaderBanner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HeaderBanner4Layout.createSequentialGroup()
+                .addContainerGap(65, Short.MAX_VALUE)
+                .addComponent(Title1)
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+        HeaderBanner4Layout.setVerticalGroup(
+            HeaderBanner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HeaderBanner4Layout.createSequentialGroup()
+                .addComponent(Title1)
+                .addGap(0, 0, 0))
+        );
+
+        bannerIMG2.setBackground(new java.awt.Color(204, 204, 204));
+        bannerIMG2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bannerIMG2.setToolTipText("");
+        bannerIMG2.setName(""); // NOI18N
+
+        buyButton2.setBackground(new java.awt.Color(176, 147, 106));
+        buyButton2.setFont(new java.awt.Font("Castellar", 1, 26)); // NOI18N
+        buyButton2.setForeground(new java.awt.Color(255, 255, 255));
+        buyButton2.setText("Buy Ticket");
+        buyButton2.setEnabled(false);
+        buyButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Banner4Layout = new javax.swing.GroupLayout(Banner4);
+        Banner4.setLayout(Banner4Layout);
+        Banner4Layout.setHorizontalGroup(
+            Banner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Banner4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(buyButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(HeaderBanner4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Banner4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bannerIMG2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        Banner4Layout.setVerticalGroup(
+            Banner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Banner4Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(HeaderBanner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bannerIMG2, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buyButton2)
+                .addContainerGap())
+        );
+
+        Banner5.setBackground(new java.awt.Color(51, 51, 51));
+        Banner5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(107, 92, 71), 4, true));
+        Banner5.setForeground(new java.awt.Color(255, 255, 255));
+
+        HeaderBanner5.setBackground(new java.awt.Color(107, 92, 71));
+
+        Title2.setFont(new java.awt.Font("Cormorant Infant SemiBold", 0, 48)); // NOI18N
+        Title2.setForeground(new java.awt.Color(255, 255, 255));
+        Title2.setText("=====[No Movie]=====");
+
+        javax.swing.GroupLayout HeaderBanner5Layout = new javax.swing.GroupLayout(HeaderBanner5);
+        HeaderBanner5.setLayout(HeaderBanner5Layout);
+        HeaderBanner5Layout.setHorizontalGroup(
+            HeaderBanner5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HeaderBanner5Layout.createSequentialGroup()
+                .addContainerGap(65, Short.MAX_VALUE)
+                .addComponent(Title2)
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+        HeaderBanner5Layout.setVerticalGroup(
+            HeaderBanner5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HeaderBanner5Layout.createSequentialGroup()
+                .addComponent(Title2)
+                .addGap(0, 0, 0))
+        );
+
+        bannerIMG3.setBackground(new java.awt.Color(204, 204, 204));
+        bannerIMG3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bannerIMG3.setToolTipText("");
+        bannerIMG3.setName(""); // NOI18N
+
+        buyButton3.setBackground(new java.awt.Color(176, 147, 106));
+        buyButton3.setFont(new java.awt.Font("Castellar", 1, 26)); // NOI18N
+        buyButton3.setForeground(new java.awt.Color(255, 255, 255));
+        buyButton3.setText("Buy Ticket");
+        buyButton3.setEnabled(false);
+        buyButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Banner5Layout = new javax.swing.GroupLayout(Banner5);
+        Banner5.setLayout(Banner5Layout);
+        Banner5Layout.setHorizontalGroup(
+            Banner5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Banner5Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(buyButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(HeaderBanner5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Banner5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bannerIMG3, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        Banner5Layout.setVerticalGroup(
+            Banner5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Banner5Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(HeaderBanner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bannerIMG3, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buyButton3)
+                .addContainerGap())
+        );
+
         HeaderTitle.setBackground(new java.awt.Color(33, 33, 33));
-        HeaderTitle.setPreferredSize(new java.awt.Dimension(1920, 60));
 
         jSeparator2.setBackground(new java.awt.Color(107, 92, 71));
         jSeparator2.setForeground(new java.awt.Color(107, 92, 71));
@@ -45,49 +350,130 @@ public class ComingSoon extends javax.swing.JPanel {
 
         HTitle.setFont(new java.awt.Font("Castellar", 1, 32)); // NOI18N
         HTitle.setForeground(new java.awt.Color(204, 204, 204));
-        HTitle.setText("Coming soon");
+        HTitle.setText("Coming Soon");
 
         javax.swing.GroupLayout HeaderTitleLayout = new javax.swing.GroupLayout(HeaderTitle);
         HeaderTitle.setLayout(HeaderTitleLayout);
         HeaderTitleLayout.setHorizontalGroup(
             HeaderTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 1920, Short.MAX_VALUE)
-            .addGroup(HeaderTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(HeaderTitleLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(HTitle)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(HeaderTitleLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(HTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         HeaderTitleLayout.setVerticalGroup(
             HeaderTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderTitleLayout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(HTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(HeaderTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(HeaderTitleLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(HTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addComponent(Banner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(Banner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(Banner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
             .addComponent(HeaderTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Banner, Banner4, Banner5});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(HeaderTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1020, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(Banner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Banner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Banner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(97, 97, 97))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Banner, Banner4, Banner5});
+
+        getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
+    
+    private int idMov1, idMov2, idMov3;
+    
+    private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+            // mengambil arraylist movie
+            ArrayList<Movie> movies = conn.dbMovies();
+            // mengambil index ke 2 (1 di array)
+            Movie mov = movies.get(1);
+            // mengambil id dari index 2
+            idMov2 = mov.getMovieId();
+            
+            //memanggil objek JPanel dari MovideDetails, kemudian memasukkan nya di dalam method changeDisplayPanel
+            JPanel newPanel = new MovieDetails(displayFrame, idMov2);  
+            displayFrame.changeDisplayPanel(newPanel);
+        }catch (SQLException ex){
+            System.out.println("Eksepsi: "+ ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Exception: "+ ex.getMessage());
+        }
+                
+    }//GEN-LAST:event_buyButtonActionPerformed
+
+    private void buyButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButton2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            ArrayList<Movie> movies = conn.dbMovies();
+            Movie mov = movies.get(0);
+            idMov1 = mov.getMovieId();
+            JPanel newPanel = new MovieDetails(displayFrame, idMov1);
+            displayFrame.changeDisplayPanel(newPanel);
+        }catch (SQLException ex){
+            System.out.println("Eksepsi: "+ ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Exception: "+ ex.getMessage());
+        }
+    }//GEN-LAST:event_buyButton2ActionPerformed
+
+    private void buyButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButton3ActionPerformed
+        // TODO add your handling code here:
+        try {
+            ArrayList<Movie> movies = conn.dbMovies();
+            Movie mov = movies.get(2);
+            idMov3 = mov.getMovieId();
+            JPanel newPanel = new MovieDetails(displayFrame, idMov3);  
+            displayFrame.changeDisplayPanel(newPanel);
+        }catch (SQLException ex){
+            System.out.println("Eksepsi: "+ ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Exception: "+ ex.getMessage());
+        }
+    }//GEN-LAST:event_buyButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Banner;
+    private javax.swing.JPanel Banner4;
+    private javax.swing.JPanel Banner5;
     private javax.swing.JLabel HTitle;
+    private javax.swing.JPanel HeaderBanner;
+    private javax.swing.JPanel HeaderBanner4;
+    private javax.swing.JPanel HeaderBanner5;
     private javax.swing.JPanel HeaderTitle;
+    private javax.swing.JLabel Title;
+    private javax.swing.JLabel Title1;
+    private javax.swing.JLabel Title2;
+    private javax.swing.JLabel bannerIMG;
+    private javax.swing.JLabel bannerIMG2;
+    private javax.swing.JLabel bannerIMG3;
+    private javax.swing.JButton buyButton;
+    private javax.swing.JButton buyButton2;
+    private javax.swing.JButton buyButton3;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
