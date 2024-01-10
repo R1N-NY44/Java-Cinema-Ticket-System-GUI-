@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * @author Yoga
  */
 public class Database {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/kampus_pbotubes";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/gui_cinema_oop";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "";
 
